@@ -1,5 +1,9 @@
+#![allow(unused_parens)]
+#![allow(non_snake_case)]
+
 pub mod app;
-mod pages;
+mod front;
+mod api;
 
 #[cfg(feature = "hydrate")]
 #[wasm_bindgen::prelude::wasm_bindgen]

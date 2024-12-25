@@ -1,12 +1,17 @@
-use crate::pages::hyultiscom::game_heatchain::GameHeatchain;
-use crate::pages::hyultiscom::accueil::Accueil;
+use crate::front::pages::hyultiscom::game_heatchain::GameHeatchain;
+use crate::front::pages::hyultiscom::accueil::Accueil;
 use leptos::component;
 use leptos::view;
 use leptos::IntoView;
+use leptos::logging::log;
 use leptos::prelude::*;
 use leptos_meta::{provide_meta_context, Link, Meta, MetaTags, Stylesheet, Title};
 use leptos_router::components::{Route, Router, Routes, A};
 use leptos_router::StaticSegment;
+use leptos_use::use_locales;
+use reactive_stores::Store;
+use crate::front::utils::translate::{Translate, TranslateFn};
+use crate::front::utils::usersData::{UserData, UserDataStoreFields};
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
 	view! {
@@ -16,7 +21,7 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
 				<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
 				<meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin"/>
-				<meta http-equiv="Content-Security-Policy" content="script-src'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'"/> // https:
+				//<meta http-equiv="Content-Security-Policy" content="script-src https: 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'"/> // actuellement instable avec leptos ?
 				<AutoReload options=options.clone() />
 				<HydrationScripts options/>
 				<MetaTags/>
@@ -28,15 +33,15 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
 	}
 }
 
-/*
-				<meta http-equiv="Content-Security-Policy" content="default-src https: 'unsafe-inline' 'unsafe-eval'"/>
-				<meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin"/>
- */
-	
 #[component]
 pub fn App() -> impl IntoView {
 	// Provides context that manages stylesheets, titles, meta tags, etc.
 	provide_meta_context();
+
+	let locales = use_locales();
+	provide_context(Store::new(UserData::new(locales.get().first().unwrap_or(&"en".to_string()))));
+
+	let userData = expect_context::<Store<UserData>>();
 
 	view! {
 		// injects a stylesheet into the document <head>
@@ -52,7 +57,7 @@ pub fn App() -> impl IntoView {
 		<div id="body">
 			<div class="imgheader"></div>
 
-			<header>Hyultis</header>
+			<header>Hyultis - {move || userData.lang().get()}</header>
 
 
 			// content for this welcome page
@@ -60,11 +65,10 @@ pub fn App() -> impl IntoView {
 				<nav>
 					<ul class="menu">
 						<li><A href="/">HOME</A></li>
-						<li>trad
-
+						<li><TranslateFn key=move || format!("swap_to_{}",userData.lang().get())/>
 							<ul>
-								<li>EN</li>
-								<li>FR</li>
+								<li on:click=move |_| {log!("go to EN");return userData.write().lang_set("EN");}><Translate key="swap_to_EN"/></li>
+								<li on:click=move |_| {log!("go to FR");return userData.write().lang_set("FR");}><Translate key="swap_to_FR"/></li>
 							</ul>
 						</li>
 					</ul>
@@ -81,7 +85,7 @@ pub fn App() -> impl IntoView {
 
 			<footer>
 				design by <a href="mailto:%68%79%75%6c%74%69%73%40%67%6d%61%69%6c%2e%63%6f%6d">Hyultis</a><br/>
-				<span style="font-size: 0.5em">realised with <a href="https://leptos.dev/">leptos</a> in <a href="https://www.rust-lang.org/">rust</a></span>
+				<span style="font-size: 0.5em">fully realised with <a href="https://leptos.dev/">leptos</a> in <a href="https://www.rust-lang.org/">rust</a></span>
 			</footer>
 		</div>
 	}

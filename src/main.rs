@@ -1,3 +1,9 @@
+#![allow(unused_parens)]
+#![allow(non_snake_case)]
+
+mod api;
+
+use std::fs;
 
 #[cfg(feature = "ssr")]
 #[tokio::main]
@@ -7,6 +13,24 @@ async fn main() {
     use leptos::prelude::*;
     use leptos_axum::{generate_route_list, LeptosRoutes};
     use hyultisfr::app::*;
+	use Hconfig::HConfigManager::HConfigManager;
+	use Htrace::CommandLine::{CommandLine, CommandLineConfig};
+	use Htrace::HTracer::HTracer;
+	use Htrace::Type::Type;
+
+	let _ = fs::create_dir("./config");
+	let _ = fs::create_dir("./dynamic");
+	let _ = fs::remove_dir_all("./dynamic/traces");
+
+	HConfigManager::singleton().setConfPath("./config");
+	HTracer::minlvl_default(Type::WARNING);
+	HTracer::appendModule("cli", CommandLine::new(CommandLineConfig::default())).unwrap();
+	HTracer::appendModule("file", Htrace::File::File::new(Htrace::File::FileConfig {
+		path: "./dynamic/traces".to_string(),
+		bySrc: true,
+		byThreadId: false,
+		..Htrace::File::FileConfig::default()
+	})).unwrap();
 
     let conf = get_configuration(None).unwrap();
     let addr = conf.leptos_options.site_addr;
