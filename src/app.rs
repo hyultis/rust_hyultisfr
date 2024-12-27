@@ -57,7 +57,7 @@ pub fn App() -> impl IntoView {
 		<div id="body">
 			<div class="imgheader"></div>
 
-			<header>Hyultis - {move || userData.lang().get()}</header>
+			<header>Hyultis - <TranslateFn key= move || "hello".to_string()/></header>
 
 
 			// content for this welcome page

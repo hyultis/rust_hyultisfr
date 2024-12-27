@@ -1,9 +1,9 @@
 use leptos::{component, view, IntoView};
-use leptos::prelude::{expect_context, Action, Get, Read, Signal};
-use leptos::server::Resource;
+use leptos::logging::log;
+use leptos::prelude::{expect_context, Get, Resource};
 use leptos::suspense::Transition;
 use reactive_stores::Store;
-use crate::api::translateCall::{APItranslate_getBook, APItranslate_updateMissing};
+use crate::front::utils::fluent::FluentManager::FluentManager;
 use crate::front::utils::usersData::{UserData, UserDataStoreFields};
 
 
@@ -17,10 +17,26 @@ pub fn Translate(#[prop(into)] key: String) -> impl IntoView {
 #[component]
 pub fn TranslateFn(key: impl Fn() -> String + Send + Sync + 'static) -> impl IntoView {
 
-	//let (lang, _) = signal(lang.into());
+	let key = key();
 	let userData = expect_context::<Store<UserData>>();
-	//let key = key.into();
 
+	let subkey = key.clone();
+	let translate = Resource::new(
+		move || userData.lang().get(),
+		move |lang| {
+			FluentManager::singleton().translate(lang, subkey.clone())
+		}
+	);
+
+	let altkey = key.clone();
+	view! {
+		<Transition fallback=move || view! { {format!("{}_fallback",altkey.clone())} }>
+			{translate}
+		</Transition>
+	}
+}
+
+/*
 	let async_data = Resource::new(
 		move || userData.lang().get(),
 		// every time `count` changes, this will run
@@ -47,9 +63,5 @@ pub fn TranslateFn(key: impl Fn() -> String + Send + Sync + 'static) -> impl Int
 		}
 	};
 
-	view! {
-		<Transition fallback=move || view! { {"test"} }>
-			{tmp}
-		</Transition>
-	}
-}
+	{tmp}
+ */
