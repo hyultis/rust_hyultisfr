@@ -2,6 +2,7 @@
 #![allow(non_snake_case)]
 #![allow(dead_code)]
 
+
 pub mod app;
 mod front;
 mod api;

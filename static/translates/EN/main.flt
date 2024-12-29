@@ -1,3 +1,6 @@
 hello = Hello, world!
 swap_to_EN = 🇬🇧 English
 swap_to_FR = 🇫🇷 Français
+page404_title = Page not found
+page404_content = Sorry, this page cannot be found. you can go back to { $children }.
+menu_home = Home

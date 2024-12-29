@@ -3,15 +3,14 @@ use crate::front::pages::hyultiscom::accueil::Accueil;
 use leptos::component;
 use leptos::view;
 use leptos::IntoView;
-use leptos::logging::log;
 use leptos::prelude::*;
 use leptos_meta::{provide_meta_context, Link, Meta, MetaTags, Stylesheet, Title};
 use leptos_router::components::{Route, Router, Routes, A};
 use leptos_router::StaticSegment;
 use leptos_use::use_locales;
 use reactive_stores::Store;
-use crate::front::utils::translate::{Translate, TranslateFn};
-use crate::front::utils::usersData::{UserData, UserDataStoreFields};
+use crate::front::utils::translate::{Translate, TranslateCurrentLang, TranslateFn};
+use crate::front::utils::usersData::{UserData};
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
 	view! {
@@ -39,10 +38,9 @@ pub fn App() -> impl IntoView {
 	provide_meta_context();
 
 	let locales = use_locales();
-	provide_context(Store::new(UserData::new(locales.get().first().unwrap_or(&"en".to_string()))));
+	provide_context(Store::new(UserData::new(locales.get().first().unwrap_or(&"EN".to_string()))));
 
 	let userData = expect_context::<Store<UserData>>();
-
 	view! {
 		// injects a stylesheet into the document <head>
 		// id=leptos means cargo-leptos will hot-reload this stylesheet
@@ -59,23 +57,22 @@ pub fn App() -> impl IntoView {
 
 			<header>Hyultis - <TranslateFn key= move || "hello".to_string()/></header>
 
-
 			// content for this welcome page
 			<Router>
 				<nav>
 					<ul class="menu">
-						<li><A href="/">HOME</A></li>
-						<li><TranslateFn key=move || format!("swap_to_{}",userData.lang().get())/>
+						<li><A href="/"><Translate key="menu_home"/></A></li>
+						<li><TranslateCurrentLang/>
 							<ul>
-								<li on:click=move |_| {log!("go to EN");return userData.write().lang_set("EN");}><Translate key="swap_to_EN"/></li>
-								<li on:click=move |_| {log!("go to FR");return userData.write().lang_set("FR");}><Translate key="swap_to_FR"/></li>
+								<li on:click=move |_| userData.write().lang_set("EN")><Translate key="swap_to_EN"/></li>
+								<li on:click=move |_| userData.write().lang_set("FR")><Translate key="swap_to_FR"/></li>
 							</ul>
 						</li>
 					</ul>
 				</nav>
 
 				<section>
-					<Routes fallback=|| "Page not found.".into_view()>
+					<Routes fallback=|| Page404>
 						<Route path=StaticSegment("") view=Accueil/>
 						<Route path=StaticSegment("GameHeatchain") view=GameHeatchain/>
 					</Routes>
@@ -88,5 +85,15 @@ pub fn App() -> impl IntoView {
 				<span style="font-size: 0.5em">fully realised with <a href="https://leptos.dev/">leptos</a> in <a href="https://www.rust-lang.org/">rust</a></span>
 			</footer>
 		</div>
+	}
+}
+
+
+#[component]
+pub fn Page404() -> impl IntoView {
+	view!{
+		<h2><Translate key="page404_title"/></h2>
+
+		<Translate key="page404_content" ><A href="/"><Translate key="menu_home"/></A></Translate>
 	}
 }

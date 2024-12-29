@@ -1,3 +1,6 @@
 hello = Bonjour le monde !
 swap_to_EN = 🇬🇧 English
 swap_to_FR = 🇫🇷 Français
+page404_title = Page introuvable
+page404_content = Désoler, cette page est introuvable. vous pouvez allez sur { $children }.
+menu_home = Accueil

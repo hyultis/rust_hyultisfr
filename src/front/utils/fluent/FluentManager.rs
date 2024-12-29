@@ -1,7 +1,7 @@
 use std::collections::HashMap;
-use std::sync::{OnceLock, RwLock};
+use std::sync::{Arc, OnceLock, RwLock};
 use fluent::bundle::FluentBundle;
-use fluent::FluentResource;
+use fluent::{FluentArgs, FluentResource};
 use intl_memoizer::concurrent::IntlLangMemoizer;
 use leptos::logging::log;
 use unic_langid::LanguageIdentifier;
@@ -25,7 +25,7 @@ impl FluentManager {
 		return SINGLETON.get_or_init(|| FluentManager::new());
 	}
 
-	pub async fn translate(&self, lang: impl Into<String>, key: impl Into<String>) -> String
+	pub async fn translate(&self, lang: impl Into<String>, key: impl Into<String>, params: Arc<HashMap<String,String>>) -> String
 	{
 		let lang = lang.into();
 		let key = key.into();
@@ -47,12 +47,16 @@ impl FluentManager {
 		};
 		let mut errors = vec![];
 
-		let result = bundle.content.format_pattern(pattern, None, &mut errors);
+		let mut args = FluentArgs::new();
+		params.iter().for_each(|(k,v)| {
+			args.set(k, v);
+		});
+
+		let result = bundle.content.format_pattern(pattern, Some(&args), &mut errors);
 
 		if(!errors.is_empty())
 		{
 			log!("Error while formatting fluent pattern: {:?}",errors);
-			return key;
 		}
 
 		return result.to_string();
