@@ -9,6 +9,8 @@ use leptos_router::components::{Route, Router, Routes, A};
 use leptos_router::StaticSegment;
 use leptos_use::use_locales;
 use reactive_stores::Store;
+use crate::front::pages::hyultiscom::perso::Perso;
+use crate::front::pages::hyultiscom::perso_orgeco::PersoORGECO;
 use crate::front::utils::translate::{Translate, TranslateCurrentLang, TranslateFn};
 use crate::front::utils::usersData::{UserData};
 
@@ -75,6 +77,8 @@ pub fn App() -> impl IntoView {
 					<Routes fallback=|| Page404>
 						<Route path=StaticSegment("") view=Accueil/>
 						<Route path=StaticSegment("GameHeatchain") view=GameHeatchain/>
+						<Route path=StaticSegment("Perso") view=Perso/>
+						<Route path=StaticSegment("PersoORGECO") view=PersoORGECO/>
 					</Routes>
 				</section>
 			</Router>

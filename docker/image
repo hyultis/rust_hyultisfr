@@ -1,0 +1,44 @@
+# Get started with a build env with Rust nightly
+FROM rustlang/rust:nightly-alpine AS builder
+
+ENV BUILDNAME=hyultisfr
+
+RUN apk update && \
+    apk add --no-cache bash curl npm libc-dev binaryen
+
+RUN npm install -g sass
+
+# Add the WASM target
+RUN rustup target add wasm32-unknown-unknown
+
+WORKDIR /work
+COPY . .
+RUN rm -R target; exit 0
+
+RUN cargo install cargo-leptos
+RUN cargo leptos build --release -vv
+
+RUN mkdir /work/build
+RUN cp /work/target/release/$BUILDNAME /work/build/leptosapp
+RUN cp -R /work/target/site /work/build/site
+RUN rm -R /work/target
+
+FROM rustlang/rust:nightly-alpine AS runner
+
+WORKDIR /app
+
+RUN mkdir dynamic
+RUN mkdir config
+
+COPY --from=builder /work/build /app
+COPY --from=builder /work/Cargo.toml /app/
+COPY --from=builder /work/static /app/static
+
+# clean cargo (reduce size)
+
+ENV ENV="PROD"
+ENV LEPTOS_SITE_ADDR="0.0.0.0:3001"
+ENV LEPTOS_SITE_ROOT=./site
+EXPOSE 3001
+
+CMD ["/app/leptosapp"]

@@ -1,10 +1,8 @@
 use std::collections::HashMap;
 use std::sync::Arc;
 use leptos::{component, view, IntoView};
-use leptos::children::Children;
 use leptos::children::ChildrenFn;
-use leptos::logging::log;
-use leptos::prelude::{expect_context, ChildrenFnMut, Get, IntoAny, Read, Resource, Suspend};
+use leptos::prelude::{expect_context, Get, IntoAny, Read, Resource};
 use leptos::suspense::Transition;
 use reactive_stores::Store;
 use crate::front::utils::fluent::FluentManager::FluentManager;
@@ -71,10 +69,13 @@ pub fn TranslateFn(
 	);
 
 	let altkey = key.clone();
+	let altkey2 = key.clone();
 	view! {
 		<Transition fallback=move || view! { {format!("{}_fallback",altkey.clone()())} }>
 			{move || {
-				let translate = translate.get().unwrap();
+				let Some(translate) = translate.get() else {
+					return view! { {altkey2.clone()()} }.into_any();
+				};
 				let splitted = splitted.to_string();
 				if(translate.contains(splitted.as_str()))
 				{

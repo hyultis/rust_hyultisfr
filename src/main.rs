@@ -4,17 +4,18 @@
 
 mod api;
 
-use std::fs;
 
 #[cfg(feature = "ssr")]
 #[tokio::main]
 async fn main() {
+	use std::fs;
+	use std::net::{IpAddr, Ipv6Addr, SocketAddr};
     use axum::Router;
     use leptos::logging::log;
     use leptos::prelude::*;
     use leptos_axum::{generate_route_list, LeptosRoutes};
-    use hyultisfr::app::*;
 	use Hconfig::HConfigManager::HConfigManager;
+	use hyultisfr::entry::{shell, App};
 	use Htrace::CommandLine::{CommandLine, CommandLineConfig};
 	use Htrace::HTracer::HTracer;
 	use Htrace::Type::Type;
@@ -33,14 +34,24 @@ async fn main() {
 		..Htrace::File::FileConfig::default()
 	})).unwrap();
 
-    let conf = get_configuration(None).unwrap();
+    let mut conf = get_configuration(None).unwrap();
+	//conf.leptos_options.site_addr = SocketAddr::new(IpAddr::V6(Ipv6Addr::UNSPECIFIED), 3000);
     let addr = conf.leptos_options.site_addr;
-    let leptos_options = conf.leptos_options;
-    // Generate the list of routes in your Leptos App
-    let routes = generate_route_list(App);
+
+	// redefining ENV options from ENV if existing
+	if let Ok(env) = std::env::var("ENV")
+	{
+		if(env=="PROD")
+		{
+			conf.leptos_options.env = Env::PROD
+		}
+	}
+	println!("leptos option env : {:?}",conf.leptos_options.env);
+
+    let leptos_options = conf.leptos_options.clone();
 
     let app = Router::new()
-        .leptos_routes(&leptos_options, routes, {
+        .leptos_routes(&leptos_options, generate_route_list(App), {
             let leptos_options = leptos_options.clone();
             move || shell(leptos_options.clone())
         })
@@ -50,10 +61,8 @@ async fn main() {
     // run our app with hyper
     // `axum::Server` is a re-export of `hyper::Server`
     log!("listening on http://{}", &addr);
-    let listener = tokio::net::TcpListener::bind(&addr).await.unwrap();
-    axum::serve(listener, app.into_make_service())
-        .await
-        .unwrap();
+	let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
+	axum::serve(listener, app.into_make_service()).await.unwrap();
 }
 
 #[cfg(not(feature = "ssr"))]
