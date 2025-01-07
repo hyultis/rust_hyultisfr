@@ -4,3 +4,5 @@ swap_to_FR = 🇫🇷 Français
 page404_title = Page introuvable
 page404_content = Désoler, cette page est introuvable. vous pouvez allez sur { $children }.
 menu_home = Accueil
+menu_me = Moi
+pageRoot_foot = Entièrement réaliser avec <a href="https://leptos.dev/" rel="noopener noreferrer nofollow" target="_blank">leptos</a> et <a href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">rust</a>.

@@ -9,8 +9,7 @@ mod api;
 #[tokio::main]
 async fn main() {
 	use std::fs;
-	use std::net::{IpAddr, Ipv6Addr, SocketAddr};
-    use axum::Router;
+	use axum::Router;
     use leptos::logging::log;
     use leptos::prelude::*;
     use leptos_axum::{generate_route_list, LeptosRoutes};

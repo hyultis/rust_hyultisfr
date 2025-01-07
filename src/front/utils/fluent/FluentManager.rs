@@ -22,7 +22,10 @@ static SINGLETON: OnceLock<FluentManager> = OnceLock::new();
 impl FluentManager {
 	pub fn singleton() -> &'static FluentManager
 	{
-		return SINGLETON.get_or_init(|| FluentManager::new());
+		return SINGLETON.get_or_init(|| {
+			log!("new FluentManager");
+			FluentManager::new()
+		});
 	}
 
 	pub async fn translate(&self, lang: impl Into<String>, key: impl Into<String>, params: Arc<HashMap<String,String>>) -> String
@@ -36,7 +39,10 @@ impl FluentManager {
 		}
 
 		let bindingMap = self._resources.read().unwrap();
-		let bundle = bindingMap.get(&lang).unwrap();
+		let Some(bundle) = bindingMap.get(&lang) else {
+			log!("missing book");
+			return key;
+		};
 		let Some(msg) = bundle.content.get_message(key.as_str()) else {
 			log!("missing message for key {}",key);
 			return key;
@@ -72,6 +78,7 @@ impl FluentManager {
 
 	async fn addResource(&self, lang: &String, timestamp: u64)
 	{
+		log!("add resource");
 		let (content,newtime) = match API_translate_getBook(lang.clone(), timestamp).await
 		{
 			Ok(data) => {

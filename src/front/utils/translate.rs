@@ -2,9 +2,11 @@ use std::collections::HashMap;
 use std::sync::Arc;
 use leptos::{component, view, IntoView};
 use leptos::children::ChildrenFn;
+use leptos::html::InnerHtmlAttribute;
 use leptos::prelude::{expect_context, Get, IntoAny, Read, Resource};
 use leptos::suspense::Transition;
 use reactive_stores::Store;
+use leptos::prelude::ElementChild;
 use crate::front::utils::fluent::FluentManager::FluentManager;
 use crate::front::utils::usersData::{UserData, UserDataStoreFields};
 
@@ -69,34 +71,31 @@ pub fn TranslateFn(
 	);
 
 	let altkey = key.clone();
-	let altkey2 = key.clone();
 	view! {
-		<Transition fallback=move || view! { {format!("{}_fallback",altkey.clone()())} }>
-			{move || {
-				let Some(translate) = translate.get() else {
-					return view! { {altkey2.clone()()} }.into_any();
-				};
-				let splitted = splitted.to_string();
-				if(translate.contains(splitted.as_str()))
-				{
-					let splitVar = translate.split_once(splitted.as_str());
-					let (prefix,suffix) = splitVar.unwrap();
-					let prefix = prefix.to_string();
-					let suffix = suffix.to_string();
-					if let Some(children) = &children
+		<Transition fallback=move || view! { <span>{format!("{}_fallback",altkey.clone()())}</span> }>
+			{move || translate.read().as_ref().cloned().map(|translated|{
+					if(translated.contains(splitted))
 					{
-						view! { {prefix}{children()}{suffix} }.into_any()
+						let splitVar = translated.split_once(splitted);
+						let (prefix,suffix) = splitVar.unwrap();
+						let prefix = prefix.to_string();
+						let suffix = suffix.to_string();
+						if let Some(children) = &children
+						{
+							view! { <span>{prefix}{children()}{suffix}</span > }.into_any()
+						}
+						else
+						{
+							view! { <span>{prefix}{suffix}</span> }.into_any()
+						}
 					}
 					else
 					{
-						view! { {prefix}{suffix} }.into_any()
+						//view! { <span>{translated.clone()}</span> }.into_any()
+						view! { <span inner_html=move || translated.clone()/> }.into_any()
 					}
-				}
-				else
-				{
-					view! { {translate} }.into_any()
-				}
-			}}
+				})
+			}
 		</Transition>
 	}
 }

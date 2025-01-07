@@ -86,7 +86,7 @@ pub fn App() -> impl IntoView {
 
 			<footer>
 				design by <a href="mailto:%68%79%75%6c%74%69%73%40%67%6d%61%69%6c%2e%63%6f%6d">Hyultis</a><br/>
-				<span style="font-size: 0.5em">fully realised with <a href="https://leptos.dev/">leptos</a> in <a href="https://www.rust-lang.org/">rust</a></span>
+				<span style="font-size: 0.5em"><Translate key="pageRoot_foot"/></span>
 			</footer>
 		</div>
 	}
