@@ -2,6 +2,7 @@ use leptos::{component, view, IntoView};
 use leptos::prelude::ElementChild;
 use leptos_router::components::A;
 use time::OffsetDateTime;
+use crate::front::utils::translate::Translate;
 
 /// Renders the home page of your application.
 #[component]
@@ -10,28 +11,27 @@ pub fn Perso() -> impl IntoView {
 	let now = OffsetDateTime::now_utc();
 
 	view! {
-		<h2><span>About Me</span></h2>
+		<h2><span><Translate key="pagePerso_title"/></span></h2>
 
 		<article>
-	        "I'm Hyultis," {move || now.year() - 1989} " years old, passionate by programming since my childhood."<br/>
-	        You can see my <span class="linktointernal" click="changepage('cv','FR')">Curriculum vitae (french only)</span>.<br/>
-	        Graduated from a BTS IG management, here is some project i developed on my free time :
+			<Translate key="pagePerso_desc_line1">{move || now.year() - 1989}</Translate><br/>
+			<Translate key="pagePerso_desc_line2"><A href="CV">Curriculum vitae</A></Translate><br/>
+			<Translate key="pagePerso_desc_line3"/><br/>
 			<ul>
-				<li><A href="/">Home</A>" : My individual enterprise, i'm developing games."</li>
-	            <li><A href="PersoRustWebsite">Website in rust</A>  : this website realised in rust with leptos.</li>
-	            <li><A href="PersoHtrace">Htrace</A>  : this website realised in rust with leptos.</li>
-	            <li><A href="PersoHconfig">Hconfig</A>  : this website realised in rust with leptos.</li>
-	            <li><A href="PersoHArcMut">HArcMut</A>  : this website realised in rust with leptos.</li>
-	            <li><A href="PersoSingletonThread">singletonThread</A>  : this website realised in rust with leptos.</li>
+				<li><A href="/">Home</A> " ":" " <Translate key="pagePerso_projet_enterprise_desc"/></li>
+	            <li><A href="RustWebsite">Website in rust</A> " ":" "<Translate key="pagePerso_projet_rustwebsite_desc"/></li>
+	            <li><A href="Htrace">Htrace</A>" ":" "<Translate key="pagePerso_projet_htrace_desc"/></li>
+	            <li><A href="Hconfig">Hconfig</A>" ":" "<Translate key="pagePerso_projet_hconfig_desc"/></li>
+	            <li><A href="HArcMut">HArcMut</A>" ":" "<Translate key="pagePerso_projet_harcmut_desc"/></li>
+	            <li><A href="SingletonThread">singletonThread</A>" ":" "<Translate key="pagePerso_projet_singletonthread_desc"/></li>
 			</ul>
-			Old and Abandoned project :
+			<Translate key="pagePerso_desc_line4"/>
 			<ul>
-	            <li><A href="PersoHwe">Hwe</A>  : old website system from ~2018</li>
-	            <li><A href="PersoORGECO">OR.GE.CO 30</A> : website of a consumer protection association, the association closed in 2023.</li>
-				<li><A href="PersoHcms">Hcms</A> : old website system from ~2010</li>
-				<li><A href="PersoVidPHPConverter">VidPHPConverter</A> : PHP class that overlay FFMpeg executable (getting infos, conversion, streaming, etc)</li>
-				<li><A href="PersoCasseBrique">Casse brique</A> : briks breaker like, in pure HTML/JAVASCRIPT (experimental in 2012)</li>
-				<li><A href="PersoWowmystats">Wowmystats</A> : a system who follow evolving stats of a WOW character</li>
+	            <li><A href="Hwe">Hwe</A>" ":" "<Translate key="pagePerso_projet_hwe_desc"/></li>
+	            <li><A href="ORGECO">OR.GE.CO 30</A>" ":" "<Translate key="pagePerso_projet_orgeco_desc"/></li>
+				<li><A href="VidPHPConverter">VidPHPConverter</A>" ":" "<Translate key="pagePerso_projet_vidphpconverter_desc"/></li>
+				<li><A href="CasseBrique"><Translate key="pagePersoCasseBrique_title"/></A>" ":" "<Translate key="pagePerso_projet_casebrique_desc"/></li>
+				<li><A href="Wowmystats">Wowmystats</A>" ":" "<Translate key="pagePerso_projet_wowmystats_desc"/></li>
 			</ul>
 		</article>
     }

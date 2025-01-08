@@ -1,6 +1,197 @@
-hello = Hello, world!
+#Menu
+menu_home = Home
+menu_me = Me
 swap_to_EN = 🇬🇧 English
 swap_to_FR = 🇫🇷 Français
+
+# Root
+pageRoot_foot = Completely made with <a href="https://leptos.dev/" rel="noopener noreferrer nofollow" target="_blank">leptos</a> and <a href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">rust</a>.
+pageRoot_foot_design = Design by
+
+#page 404
 page404_title = Page not found
 page404_content = Sorry, this page cannot be found. you can go back to { $children }.
-menu_home = Home
+
+#page Accueil ------------------------------------------
+pageAccueil_desc = Welcome to Hyultis' website, I create video games.
+pageAccueil_goperso = Want to know more about me ? Click here:
+
+#page game heatchain
+pageGameHeatchain_desc = <br/><br/>
+ <b>Heatchain</b> is a fast and intense arcade game, where concentration and reactivity are essential.<br/>
+ <br/>
+ The goal is to find the next glyph among those on the board as quickly as possible.<br/>
+ <br/>
+ Chain the correct glyphs, collect bonuses, and form the longest possible chain to reach the maximum score!<br/>
+ <br/>
+ With its short games, <b>Heatchain</b> offers a thrilling arcade experience, where every second counts to maximize your score and achieve the perfect chain.<br/>
+ <br/>
+ <h3>Discover the game on:</h3>
+
+#page perso --------------------------------------------
+pagePerso_title = About me
+pagePerso_desc_line1 = My name is Hyultis, I am { $children } years old and I have been passionate about programming since I was a child.
+pagePerso_desc_line2 = You can see my { $children }
+pagePerso_desc_line3 = Graduated with a BTS in IT management, during my free time, I continue to develop projects:
+pagePerso_desc_line4 = Abandoned projects:
+pagePerso_projet_enterprise_desc = My self-employed business, I create video games.
+pagePerso_projet_rustwebsite_desc = The current site, made with leptos and rust
+pagePerso_projet_htrace_desc = A trace class in rust
+pagePerso_projet_hconfig_desc = A configuration class in rust
+pagePerso_projet_harcmut_desc = A data synchronization class with inter-thread caching in rust
+pagePerso_projet_singletonthread_desc = A thread management class based on the singleton principle
+pagePerso_projet_hwe_desc = A PHP autoloader and a set of utility classes, for the creation of my old site
+pagePerso_projet_orgeco_desc = website of a consumer protection association, which will close in 2023
+pagePerso_projet_vidphpconverter_desc = A PHP class for using FFmpeg to get information, convert and "stream" a video (or audio)
+pagePerso_projet_casebrique_desc = A brick breaker in HTML 5 and javascript
+pagePerso_projet_wowmystats_desc = Character Evolution Tracking System on WOW
+pagePerso_all_link = Project links:
+
+pagePersoORGECO30_desc = <br/> It was a consumer protection association.<br/>
+ I had been managing their site since the end of 2012.<br/>
+ I am the designer of the site's logo and theme.<br/>
+ <br/>
+ The association closed in 2023.
+
+pagePersoRustWebsite_title = This website
+pagePersoRustWebsite_desc = This is this website, made with <a href="https://leptos.dev/" rel="noopener noreferrer nofollow" target="_blank">leptos</a> and <a href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">rust</a>
+ <br/></br>
+ Thanks to leptos, the whole site (front and back) is made in rust.
+ I use <a href="https://www.docker.com/" rel="noopener noreferrer nofollow" target="_blank">Docker</a> for the <b>deployment</b> part, <a href="https://caddyserver.com/" rel="noopener noreferrer nofollow" target="_blank">Caddy</a> for the <b>proxy/ssl</b> part.
+ The <b>translation</b> part uses <a href="https://projectfluent.org/" rel="noopener noreferrer nofollow" target="_blank">Fluent</a>.
+ <br/></br>
+ It replaces my old site made with
+
+pagePersoHtrace_desc = A simple trace class, made in rust, based on Hconfig.
+pagePersoHArcMut_desc = A data synchronization class with cache between threads, made in rust.<br/>
+                        Places the data in a RwLock shared between threads and a local copy of the data (in each thread) which will make a synchronization attempt during a get().<br/>
+                        <br/>
+                        Uses <a href="https://crates.io/crates/parking_lot" rel="noopener noreferrer nofollow" target="_blank">Parking_lot</a> and <a href="https://crates.io/crates/arc-swap" rel="noopener noreferrer nofollow" target="_blank">Arc-swap</a>
+pagePersoHconfig_desc = A JSON file configuration management class, made in rust.
+pagePersoSingletonThread_desc = Allows the use of a FnMut function as a singleton via a dedicated thread, made in rust.
+pagePersoHwe_desc = It was simply a set of PHP classes that I used a lot, notably Hyultis\loader which allows me,
+ unlike composer,
+ to load classes dynamically during development (without all the overlay of a symfony for example), as well as to avoid PSR standards.<br/>
+ My old site, as well as professional projects were made on it (or on an equivalent basis).
+ <br/>
+ The default project structure (configurable in phpEntry.php)<br/>
+ <ul>
+  <li>root<ul>
+   <li>a configuration folder ("config" by default)</li>
+   <li>a dynamic folder (cache, trace, user file, etc: "dynamic" by default)</li>
+   <li>a source folder ("src" by default)</li>
+   <li>a library folder ("vendors" by default)</li>
+   <li>phpEntry.php: the entry file</li>
+   </ul><li>
+ </ul>
+ The input file is the heart of the system, any real entry point (console command, apache|nginx vhost, etc.) thus knows everything about the project (root path, configuration, etc.)<br/>
+ I also used an agnostic external library system, allowing to use several at once (Example: Composer, npm, but also a personal "Hloader").<br/>
+ <br/>
+ Before Hwe, I used a another homemade project "Hcms", which is no longer relevant today.
+
+pagePersoCasseBrique_desc = Brick Breaker made in HTML5 was born following the desire to test the new features included in HTML5, in particular the &lt;canvas&gt; tag.
+pagePersoCasseBrique_title = Brick Breaker
+pagePersoVidPHPConverter_desc = Audio and video utility in php through <a href="http://ffmpeg.org/" rel="noopener noreferrer nofollow" target="_blank">FFMpeg</a>.<br/>
+ <br/>
+ This script makes it possible to read the information of a multimedia file (audio or video), thus allowing to know various information: duration, bitrate, codec, etc.<br/>
+ <br/>
+ It also allows video and audio conversion, audio extraction, to the formats supported by FFMpeg.<br/>
+ <br/>
+ A basic "streaming" through the HTTP protocol is possible, and thus allows a VOD system (video on demand) from any format.
+
+pagePersoWowMyStats_desc = Mini-site of statistics on characters of world of warcraft.<br/>
+ <br/>
+ The system parsed the xml of the armory online of WOW to recover the information of a character, then did it regularly to make statistics of evolution.<br/>
+ It also allowed to generate images to put in the signatures of forums.<br/>
+ <br/>
+ But between the evolution of the armory of wow and my disinterest of the game, this system does not work anymore.
+
+pagePersoCV_desc = <h3>Professional experience:</h3>
+ <span style="font-size: 1.2em;font-weight: bold;">Developer Designer</span><br/>
+ <span style="font-style: italic">At <a href="https://www.hyultis.fr/" rel="noopener noreferrer nofollow" target="_blank">Hyultis</a> since 01/2023</span>
+ <ul>
+    <li><b>Development of the video game <a href="https://www.hyultis.fr/#heatchain" rel="noopener noreferrer nofollow" target="_blank">Heatchain</a></b>
+    <ul>
+         <li>Learning the language <a href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">RUST</a></li>
+         <li>Development of a complete multi-threading video game engine</li>
+         <ul>
+             <li>Graphics rendering system (Vulkan API) with multiple rendering passes and adaptive dynamic resolution</li>
+             <li>2D and 3D rendering system with glsl shaders</li>
+             <li>Texture and font system (text)</li>
+             <li>Animation system</li>
+             <li>Event system</li>
+             <li>Audio system (based on rodio)</li>
+             <li>Compilation platform: windows, linux, android</li>
+             <li>AES encryption for scores</li>
+             <li>Steam only: steamworks integration</li>
+             <li>Android only: admob and google services integration</li>
+         </ul>
+         <li>the entire Heatchain video game (logic, gameplay, graphics, DA, event, etc.) - Apart from certain graphic and audio assets</li>
+         <li>Compilation, Packaging and provision of platforms: Steam, Itch.io, Play store</li>
+         <li>Marketing</li>
+     </ul>
+ </ul>
+
+ <span style="font-style: italic">At <a href="https://www.adec-sas.com/" rel="noopener noreferrer nofollow" target="_blank">SAS-ADEC</a> from 06/2012 to 08/2022</span>
+ <ul>
+    <li><b>Development in the EDI department</b>
+    <ul>
+        <li>Development on the <a href="https://www.axway.com/" rel="noopener noreferrer nofollow" target="_blank">AXWAY</a> software: b2bi, mapping services, DML, BMC, JAVA</li>
+        <li>Set of PHP processing scripts specific to each partner. (~70 different scripts)</li>
+        <li>Custom-developed script trace/debug environment.</li>
+        <li>Metadata search system and complete tracking of received/transmitted files and all their stages of development via an API and a web interface. (+15,000 flows and +250,000 API calls per day)</li>
+        <li>Error file extraction system and automatic translations for direct sending to customers.</li>
+    </ul></li>
+    <li><b>Resumption of existing projects</b> in PHP (up to PHP 5.1), stabilization, evolution, complete and/or progressive revision according to needs.</li>
+    <li><b>Internal service management</b> to the company: Gitlab / Confluence / Matrix</li>
+    <li>Before 2016: Technical advice and PHP development in a team of 2 people on the same TIE project.</li>
+ </ul>
+
+ <span style="font-size: 1.2em;font-weight: bold;">IT Developer</span><br/>
+ <span style="font-style: italic">At <a href="https://tiekinetix.com/fr" rel="noopener noreferrer nofollow" target="_blank">TIE KINETIX</a> from 11/2010 to 06/2012</span>
+ <ul>
+    <li>Responsible for a large ADEC client project (100 bailiffs' offices subscribed to the application, up to 4 developers).</li>
+    <li>Analysis and estimation of development times for projects assigned to the team.</li>
+    <li>Technical advice to the ADEC client.</li>
+ </ul>
+
+ <h3>Skills and qualifications:</h3>
+
+ <ul>
+    <li><b>PHP 7+:</b> object, autoloader (compose,...), <i>etc</i></li>
+    <li><b>WEB:</b> HTML, CSS, javascript, Vue.js, D3, <i>etc</i></li>
+    <li><b>Rust:</b> multi-target compilation, vulkano, winit, etc</li>
+    <li><b>Java:</b> object, encryption, standard lib, apaches commons, <i>etc</i></li>
+    <li><b>SQL languages:</b> MySQL/mariaDB, PgSQL</li>
+    <li><b>Secondary languages:</b> c++</li>
+    <li><b>IDE:</b> netbeans, phpstorm</li>
+    <li><b>Linux server administration:</b> Ubuntu/debian, iptable, ssh, docker, apache, mysql, pgsql, gitlab, confluence, matrix/element, auto deployment, <i>etc</i></li>
+ </ul>
+
+ <h3> Diplomas:</h3>
+ <ul>
+    <li>B.T.S Informatique de Gestion obtained in June 2010 at the C.C.I (Chamber of Commerce) high school in NÎMES.</li>
+    <li>B.A.C (S.T.G.) obtained in June 2008 at the Lycée Ernest Hemingway NÎMES.</li>
+ </ul>
+
+ <h3> Internship (during my studies):</h3>
+
+ <ul>
+    <li>GROUPE RDI (8 weeks 2010) SSII, internship in the Microsoft development section.</li>
+    <li>HABITAT du GARD (6 WEEKS 2009) Social housing company (IT department).</li>
+ </ul>
+
+ <h3> Personal projects:</h3>
+ <ul>
+    <li>Personal website: <a href="https://www.hyultis.fr" rel="noopener noreferrer nofollow" target="_blank">https://www.hyultis.fr</a></li>
+    <li>Libraries of video conversion function in php, PDO overlay, Trace, translation by key.</li>
+    <li>Online brick breaker games</li>
+ </ul>
+
+ <h3> Client projects:</h3>
+ <ul>
+    <li>Website of a consumer protection association: <a href="https://www.orgeco30.fr" rel="noopener noreferrer nofollow" target="_blank">https://www.orgeco30.fr</a></li>
+ </ul>
+
+ <h3> Leisure:</h3>
+ Programming, games, reading, news/technology in general.

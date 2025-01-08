@@ -1,3 +1,4 @@
+use std::time::Duration;
 use crate::front::pages::hyultiscom::game_heatchain::GameHeatchain;
 use crate::front::pages::hyultiscom::accueil::Accueil;
 use leptos::component;
@@ -6,12 +7,22 @@ use leptos::IntoView;
 use leptos::prelude::*;
 use leptos_meta::{provide_meta_context, Link, Meta, MetaTags, Stylesheet, Title};
 use leptos_router::components::{Route, Router, Routes, A};
-use leptos_router::StaticSegment;
+use leptos_router::path;
 use leptos_use::use_locales;
 use reactive_stores::Store;
 use crate::front::pages::hyultiscom::perso::Perso;
+use crate::front::pages::hyultiscom::perso_cassebrique::PersoCasseBrique;
+use crate::front::pages::hyultiscom::perso_cv::PersoCV;
+use crate::front::pages::hyultiscom::perso_harcmut::PersoHArcMut;
+use crate::front::pages::hyultiscom::perso_hconfig::PersoHconfig;
+use crate::front::pages::hyultiscom::perso_htrace::PersoHtrace;
+use crate::front::pages::hyultiscom::perso_hwe::PersoHwe;
 use crate::front::pages::hyultiscom::perso_orgeco::PersoORGECO;
-use crate::front::utils::translate::{Translate, TranslateCurrentLang, TranslateFn};
+use crate::front::pages::hyultiscom::perso_rustwebsite::PersoRustWebsite;
+use crate::front::pages::hyultiscom::perso_singletonthread::PersoSingletonThread;
+use crate::front::pages::hyultiscom::perso_vidphpconverter::PersoVidPHPConverter;
+use crate::front::pages::hyultiscom::perso_wowmystats::PersoWowMyStats;
+use crate::front::utils::translate::{Translate, TranslateCurrentLang};
 use crate::front::utils::usersData::{UserData};
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
@@ -43,21 +54,48 @@ pub fn App() -> impl IntoView {
 	provide_context(Store::new(UserData::new(locales.get().first().unwrap_or(&"EN".to_string()))));
 
 	let userData = expect_context::<Store<UserData>>();
+	let (email, _) = signal("hyultis@gmail.com".to_string());
+
+	let mailto = RwSignal::new("mailto:honeypot@example.com".to_string());
+
+	Effect::new(move |_| {
+		let mail = format!("mailto:{}", email.get());
+		set_timeout(move || mailto.set(mail), Duration::from_secs(3));
+	});
+
 	view! {
 		// injects a stylesheet into the document <head>
 		// id=leptos means cargo-leptos will hot-reload this stylesheet
 		<Stylesheet id="leptos" href="/pkg/hyultisfr.css"/>
 
 		// sets the document title
-		<Title text="Welcome to Leptos"/>
+		<Title text="Hyultis"/>
 		<Meta name="description" content="Site personnel de hyultis"/>
 
 		<Link rel="preload" fetchpriority="high" as_="image" href="./img/header.png" type_="image/png"/>
 
+		<div class="background">
+		   <span></span>
+		   <span></span>
+		   <span></span>
+		   <span></span>
+		   <span></span>
+		   <span></span>
+		   <span></span>
+		   <span></span>
+		   <span></span>
+		   <span></span>
+		   <span></span>
+		   <span></span>
+		   <span></span>
+		   <span></span>
+		   <span></span>
+		</div>
+
 		<div id="body">
 			<div class="imgheader"></div>
 
-			<header>Hyultis - <TranslateFn key= move || "hello".to_string()/></header>
+			<header>Hyultis</header>
 
 			// content for this welcome page
 			<Router>
@@ -75,17 +113,27 @@ pub fn App() -> impl IntoView {
 
 				<section>
 					<Routes fallback=|| Page404>
-						<Route path=StaticSegment("") view=Accueil/>
-						<Route path=StaticSegment("GameHeatchain") view=GameHeatchain/>
-						<Route path=StaticSegment("Perso") view=Perso/>
-						<Route path=StaticSegment("PersoORGECO") view=PersoORGECO/>
+						<Route path=path!("/") view=Accueil/>
+						<Route path=path!("/Game/Heatchain") view=GameHeatchain/>
+						<Route path=path!("/Perso") view=Perso/>
+						<Route path=path!("/Perso/RustWebsite") view=PersoRustWebsite/>
+						<Route path=path!("/Perso/Htrace") view=PersoHtrace/>
+						<Route path=path!("/Perso/Hconfig") view=PersoHconfig/>
+						<Route path=path!("/Perso/HArcMut") view=PersoHArcMut/>
+						<Route path=path!("/Perso/SingletonThread") view=PersoSingletonThread/>
+						<Route path=path!("/Perso/CV") view=PersoCV/>
+						<Route path=path!("/Perso/Hwe") view=PersoHwe/>
+						<Route path=path!("/Perso/ORGECO") view=PersoORGECO/>
+						<Route path=path!("/Perso/VidPHPConverter") view=PersoVidPHPConverter/>
+						<Route path=path!("/Perso/CasseBrique") view=PersoCasseBrique/>
+						<Route path=path!("/Perso/Wowmystats") view=PersoWowMyStats/>
 					</Routes>
 				</section>
 			</Router>
 
 
 			<footer>
-				design by <a href="mailto:%68%79%75%6c%74%69%73%40%67%6d%61%69%6c%2e%63%6f%6d">Hyultis</a><br/>
+				<Translate key="pageRoot_foot_design"/>" "<a class="none" href=move || mailto.get()>Hyultis</a><br/>
 				<span style="font-size: 0.5em"><Translate key="pageRoot_foot"/></span>
 			</footer>
 		</div>
@@ -97,7 +145,6 @@ pub fn App() -> impl IntoView {
 pub fn Page404() -> impl IntoView {
 	view!{
 		<h2><Translate key="page404_title"/></h2>
-
 		<Translate key="page404_content" ><A href="/"><Translate key="menu_home"/></A></Translate>
 	}
 }
