@@ -99,13 +99,14 @@ pub fn App() -> impl IntoView {
 
 			// content for this welcome page
 			<Router>
-				<nav>
-					<ul class="menu">
-						<li><A href="/"><Translate key="menu_home"/></A></li>
-						<li><TranslateCurrentLang/>
+				<nav class="mainmenu">
+					<ul>
+						<li></li>
+						<li><span class="clickable"><A href="/"><Translate key="menu_home"/></A></span></li>
+						<li><span class="unclickable"><TranslateCurrentLang/></span>
 							<ul>
-								<li on:click=move |_| userData.write().lang_set("EN")><Translate key="swap_to_EN"/></li>
-								<li on:click=move |_| userData.write().lang_set("FR")><Translate key="swap_to_FR"/></li>
+								<li on:click=move |_| userData.write().lang_set("EN")><span class="clickable"><Translate key="swap_to_EN"/></span></li>
+								<li on:click=move |_| userData.write().lang_set("FR")><span class="clickable"><Translate key="swap_to_FR"/></span></li>
 							</ul>
 						</li>
 					</ul>

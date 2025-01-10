@@ -1,49 +1,84 @@
-nav {
+nav.mainmenu {
   display: flex;
   height: 1.5em;
-  width: 20em;
+  padding-left: 15%;
+  padding-right: 15%;
   flex-direction: column;
 }
 
-nav ul{
+nav.mainmenu > ul > li:first-child{
+  flex: 1 1 60%;
+  flex-shrink: 99;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+nav.mainmenu ul{
   list-style-type: none;
   display: flex;
 }
 
-nav ul li{
+nav.mainmenu ul li{
   flex: 1 1 auto;
   text-align: center;
   position: relative;
+  background-color: #1d0327;
+  padding: 3px;
+  border-radius: 15px;
+  border: 2px solid var(--mainbackground);
+  box-shadow: 0px 1px 2px black;
 }
 
-nav a{
+nav.mainmenu li{
+  text-wrap: nowrap;
+}
+
+nav.mainmenu clickable{
   display: block;
   text-decoration: none;
   color: var(--defaultfontcolor);
   border-bottom: 2px solid transparent;
-  padding: 10px 0px;
+  cursor: pointer;
 }
 
-nav a:hover{
-  color: orange;
+nav.mainmenu a{
+  text-decoration: none;
+  color: var(--defaultfontcolor);
+  cursor: pointer;
+}
+
+nav.mainmenu a:hover{
+  color: var(--urlcolor);
   border-bottom: 2px solid gold;
 }
 
-li:hover > ul{
+nav.mainmenu li:hover > ul{
   display: flex;
   flex-flow: column wrap;
 }
 
-li > ul{
+nav.mainmenu li > ul{
   display: none;
-  box-shadow: 0px 1px 2px #CCC;
-  background-color: white;
   position: absolute;
   z-index: 1000;
   margin: 0 auto;
+  top: +1.2em;
+  left: +15px;
+  padding-top: 1em;
 }
 
-li:has(ul) > span::after{
+
+nav.mainmenu li > ul li{
+  box-shadow: 0px 1px 2px black;
+  padding: 5px 10px;
+}
+
+nav.mainmenu li:has(ul) > span::after{
   content:" ▼";
   font-size: 12px;
+}
+
+nav.mainmenu li:before {
+  content: "";
 }

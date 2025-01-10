@@ -10,6 +10,8 @@
   --sectionbackgroundcolor: #120521;
   --urlcolor: #F14A00;
   --urlcolorvisited: #C62300;
+  --mainbackground: #3c2854;
+  --mainbackgrounddarker: #2b1d3e;
 }
 
 
@@ -30,15 +32,37 @@ div#body {
 }
 
 section {
-  display: flex;
-  flex-direction: column;
-  margin-left: 2.5em;
-  margin-right: 2.5em;
-  //background: linear-gradient(to bottom, #e0e7ff, #c7d2fe, #818cf8);
+  margin-left: 4.5em;
+  margin-right: 4.5em;
+  background: #3c2854;
   border-radius: 15px;
-  //border: 3px solid var(--backgroundcolor);
-  padding: 1em;
+  padding: 1em 2em;
   box-shadow:  0px 14px 106px 0px rgba(128, 27, 214, 0.57);
+  text-align: center;
+}
+
+article {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+
+article > * {
+  flex: 40%;
+  padding: 1em;
+  border-radius: 15px;
+}
+
+article > *:nth-child(even), .block {
+  background-color: var(--mainbackgrounddarker);
+  box-shadow: 1px 1px 2px black;
+}
+
+@media (max-width: 800px) {
+  article > * {
+    flex: 100%;
+  }
 }
 
 footer {
@@ -46,7 +70,7 @@ footer {
   font-size: 1.5em;
   text-align: center;
   color: var(--defaultfontcolor);
-  text-shadow: -1px -1px 2px #000, 1px -1px 2px #000, -1px 1px 0 #000, 1px 1px 2px #000;
+  text-shadow: -2px -2px 2px #000, 2px -2px 2px #000, -2px 2px 2px #000, 2px 2px 2px #000;
 }
 
 header {
@@ -56,48 +80,105 @@ header {
   text-align: right;
   margin-right: 3em;
   font-weight: bold;
-  text-shadow: -1px -1px 2px #000, 1px -1px 2px #000, -1px 1px 0 #000, 1px 1px 2px #000;
+  text-shadow: -2px -2px 2px #000, 2px -2px 2px #000, -2px 2px 2px #000, 2px 2px 2px #000;
 }
 
 h2 {
   display: inline-block;
   flex: 0 0 100%;
   font-size: 2em;
-
-}
-
-article {
-  display: block;
+  color: #3c2854;
+  background-color: var(--defaultfontcolor);
+  padding: 0.25em 1em;
+  border-radius: 5px;
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+  font-family: monospace;
+  font-weight: bold;
 }
 
 b {
-  font-weight: bold;
+  font-size: 1.1em;
+  font-weight: bolder;
+  color: #f18d2d;
 }
 
 s {
   text-decoration: line-through;
 }
 
-a {
+a, a:visited {
   color: var(--urlcolor);
 }
 
-a:before {
-  content:"/";
-}
-
-a.none:before {
-  content:"/";
-}
-
-a.externe:before {
-  content:"[";
-}
-
 a.externe:after {
-  content:"]";
+  content: " 🔗";
 }
 
-a:visited, a:hover, a:active {
+a:hover, a:active {
   color: var(--urlcolorvisited);
+}
+
+li:before {
+  content: "• "
+}
+
+li ul {
+  margin-left: 2em;
+}
+
+// specific stuff
+
+#gamelist {
+}
+
+#gamelist > * {
+  display: block;
+  margin-bottom: 1em;
+}
+
+#gamelist > * > * {
+  display: inline-block;
+  background-color: var(--mainbackgrounddarker);
+  padding: 0.5em;
+  padding-bottom: 0.2em;
+  border-radius: 15px;
+}
+
+#heatchain img {
+  display: inline-block;
+  height: 3em;
+  margin: 0 50%;
+  margin-top: -1em;
+  margin-bottom: -1em;
+  background-color: var(--mainbackgrounddarker);
+  border-radius: 35px;
+}
+
+#cv h2 {
+  margin-left: 2em;
+  margin-top: 1em;
+}
+
+#cv h3 {
+  background-color: var(--mainbackgrounddarker);
+  border-radius: 15px;
+  padding: 0.5em;
+  padding-left: 1em;
+  margin-top: 1em;
+  margin-left: -1em;
+  margin-right: -1em;
+  margin-bottom: 1em;
+}
+
+#cv li:before {
+  content: "- "
+}
+
+#cv .titre {
+
+}
+
+#cv .titre span {
+  font-style: italic;
 }

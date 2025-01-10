@@ -82,11 +82,11 @@ pub fn TranslateFn(
 						let suffix = suffix.to_string();
 						if let Some(children) = &children
 						{
-							view! { <span>{prefix}{children()}{suffix}</span > }.into_any()
+							view! { <span><span inner_html=move || prefix.clone()/>{children()}<span inner_html=move || suffix.clone()/></span > }.into_any()
 						}
 						else
 						{
-							view! { <span>{prefix}{suffix}</span> }.into_any()
+							view! { <span><span inner_html=move || prefix.clone()/><span inner_html=move || suffix.clone()/></span> }.into_any()
 						}
 					}
 					else

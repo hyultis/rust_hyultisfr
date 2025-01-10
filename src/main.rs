@@ -2,6 +2,8 @@
 #![allow(non_snake_case)]
 #![allow(dead_code)]
 
+use Htrace::HTrace;
+
 mod api;
 
 
@@ -19,12 +21,21 @@ async fn main() {
 	use Htrace::HTracer::HTracer;
 	use Htrace::Type::Type;
 
+	let mut conf = get_configuration(None).unwrap();
+
 	let _ = fs::create_dir("./config");
 	let _ = fs::create_dir("./dynamic");
 	let _ = fs::remove_dir_all("./dynamic/traces");
 
 	HConfigManager::singleton().setConfPath("./config");
-	HTracer::minlvl_default(Type::WARNING);
+	if(conf.leptos_options.env==Env::PROD)
+	{
+		HTracer::minlvl_default(Type::NOTICE);
+	}
+	else
+	{
+		HTracer::minlvl_default(Type::DEBUG);
+	}
 	HTracer::appendModule("cli", CommandLine::new(CommandLineConfig::default())).unwrap();
 	HTracer::appendModule("file", Htrace::File::File::new(Htrace::File::FileConfig {
 		path: "./dynamic/traces".to_string(),
@@ -33,7 +44,6 @@ async fn main() {
 		..Htrace::File::FileConfig::default()
 	})).unwrap();
 
-    let mut conf = get_configuration(None).unwrap();
 	//conf.leptos_options.site_addr = SocketAddr::new(IpAddr::V6(Ipv6Addr::UNSPECIFIED), 3000);
     let addr = conf.leptos_options.site_addr;
 
@@ -45,7 +55,7 @@ async fn main() {
 			conf.leptos_options.env = Env::PROD
 		}
 	}
-	println!("leptos option env : {:?}",conf.leptos_options.env);
+	HTrace!((Type::DEBUG) "leptos option env : {:?}",conf.leptos_options.env);
 
     let leptos_options = conf.leptos_options.clone();
 

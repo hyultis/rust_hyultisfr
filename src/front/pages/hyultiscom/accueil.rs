@@ -8,21 +8,18 @@ use leptos::prelude::StyleAttribute;
 #[component]
 pub fn Accueil() -> impl IntoView {
 	view! {
-		<div>
-			<h2><span>Home</span></h2>
+		<h2>Home</h2>
 
-			<article style="margin-bottom: 3em">
-				<Translate key="pageAccueil_desc"/>
-			</article>
+		<article style="margin-bottom: 3em">
+			<Translate key="pageAccueil_desc"/>
+		</article>
 
-			<nav class="gamelist">
-				<A href="/Game/Heatchain"><span class="game" title="Heatchain"><img style="background: orange;" src="./img/heatchain_capsule.png" alt="heatchain logo"/></span></A>
-				//<!--<span class="game" style="cursor: not-allowed" title="Future game incoming"><img style="background: orange;" src="./img/unkowngame.png" alt="unkown logo"></span>-->
-			</nav>
-
-			<hr style="visibility: hidden;clear: both;margin-bottom: 10em"/>
-
-			<Translate key="pageAccueil_goperso"/>" "<A href="/Perso"><Translate key="menu_me"/></A>
+		<div id="gamelist">
+			<div><A href="/Game/Heatchain"><img src="./img/heatchain/heatchain_capsule.png" alt="heatchain logo"/></A></div>
+			//<div style="cursor: not-allowed"><A href="/"><img style="background: orange;" src="./img/unkowngame.png" alt="unkown logo"/></A></div>
+			//<!--<span class="game" style="cursor: not-allowed" title="Future game incoming"><img style="background: orange;" src="./img/unkowngame.png" alt="unkown logo"></span>-->
 		</div>
+
+		<Translate key="pageAccueil_goperso"/>" "<A href="/Perso"><Translate key="menu_me"/></A>
 	}
 }

@@ -13,27 +13,36 @@ page404_title = Page introuvable
 page404_content = Désoler, cette page est introuvable. vous pouvez allez sur { $children }.
 
 #page Accueil ------------------------------------------
-pageAccueil_desc = Bienvenue sur le site de Hyultis, je crée des jeux-vidéos.
+pageAccueil_desc = Bienvenue sur le site de <b>Hyultis</b>, je crée des jeux-vidéos.
 pageAccueil_goperso = Vous voulez en savoir plus sur moi ? cliquez ici :
 
 #page game heatchain
 pageGameHeatchain_desc = <br/><br/>
  <b>Heatchain</b> est un jeu d'arcade rapide et intense, où la concentration et la réactivité sont essentielles.<br/>
  <br/>
+ <img src="/img/heatchain/rune1.png"/>
+ <br/>
  Le but est de trouver le plus rapidement possible la prochaine glyphe parmi celles présentes sur le plateau.<br/>
+ <br/>
+ <img src="/img/heatchain/bonus.png"/>
  <br/>
  Enchaînez les glyphes corrects, collectez les bonus, et formez la plus longue chaîne possible pour atteindre le score maximum !<br/>
  <br/>
+ <img src="/img/heatchain/rune2.png"/>
+ <br/>
  Avec ses parties courtes, <b>Heatchain</b> offre une expérience arcade palpitante, où chaque seconde compte pour maximiser votre score et réaliser la chaîne parfaite.<br/>
  <br/>
- <h3>Découvrez le jeu sur :</h3>
+
+pageGameHeatchain_link = <h3>Découvrez le jeu sur :</h3>
 
 #page perso --------------------------------------------
 pagePerso_title = A propos de moi
-pagePerso_desc_line1 = Je m'appelle Hyultis, j'ai { $children } ans et je suis passionné par la programmation depuis mon enfance.
+pagePerso_desc_line1 = Je m'appelle <b>Hyultis</b>, j'ai { $children } ans et je suis passionné par la programmation depuis mon enfance.
 pagePerso_desc_line2 = Vous pouvez voir mon { $children }
-pagePerso_desc_line3 = Diplomé d'un BTS informatique de gestion, pendant mon temps libre, je continue de developer des projets :
-pagePerso_desc_line4 = Projets abandonnés :
+pagePerso_desc_line3 = Je continue d'appendre, comprendre et d'expérimenter de nouvelles solutions, langages, paradigmes<br/><br/>
+ Le plus récent concerne le langage <a class="externe" href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">Rust</a> que je trouve agréable, stable, et remplis de bonnes idées
+pagePerso_desc_projetok = Projets en cours :
+pagePerso_desc_projetko = Projets abandonnés :
 pagePerso_projet_enterprise_desc = Mon auto-entreprise, je crée des jeux-vidéos.
 pagePerso_projet_rustwebsite_desc = Le site actuel, réaliser avec leptos et rust
 pagePerso_projet_htrace_desc = Une classe de trace en rust
@@ -54,11 +63,13 @@ pagePersoORGECO30_desc = <br/> Il s'agissait d'une association de la défense de
  L'association a fermé en 2023.
 
 pagePersoRustWebsite_title = Ce site web
-pagePersoRustWebsite_desc = Il s'agit de ce site web, réaliser avec <a href="https://leptos.dev/" rel="noopener noreferrer nofollow" target="_blank">leptos</a> et <a href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">rust</a>
+pagePersoRustWebsite_desc = Il s'agit de ce site web, réaliser avec <a class="externe" href="https://leptos.dev/" rel="noopener noreferrer nofollow" target="_blank">leptos</a> et <a class="externe" href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">rust</a>
  <br/></br>
- Grace a leptos, tout le site (front et back) est réalisé en rust.
- J'utilise <a href="https://www.docker.com/" rel="noopener noreferrer nofollow" target="_blank">Docker</a> pour la partie <b>déploiement</b>, <a href="https://caddyserver.com/" rel="noopener noreferrer nofollow" target="_blank">Caddy</a> pour la partie <b>proxy/ssl</b>.
- La partie <b>traduction</b> utilise <a href="https://projectfluent.org/" rel="noopener noreferrer nofollow" target="_blank">Fluent</a>.
+ Grace a leptos, tout le site (front et back) est réalisé en rust.<br/>
+ J'utilise <a class="externe" href="https://www.docker.com/" rel="noopener noreferrer nofollow" target="_blank">Docker</a> pour la partie <b>déploiement</b>, <a class="externe" href="https://caddyserver.com/" rel="noopener noreferrer nofollow" target="_blank">Caddy</a> pour la partie <b>proxy/ssl</b>.<br/>
+ La partie <b>traduction</b> utilise <a class="externe" href="https://projectfluent.org/" rel="noopener noreferrer nofollow" target="_blank">Fluent</a>.
+ <br/><br/>
+ Le fond est animé grâce à : <a class="externe" href="https://wweb.dev/resources/animated-css-background-generator" rel="noopener noreferrer nofollow" target="_blank">wweb.dev</a>.
  <br/></br>
  Il remplace mon ancien site réaliser avec
 
@@ -66,15 +77,15 @@ pagePersoHtrace_desc = Une simple classe de trace, réaliser en rust, basé sur 
 pagePersoHArcMut_desc = Une classe de synchronisation de données avec cache entre thread, réaliser en rust.<br/>
  Place la donnée dans un RwLock partagé entre les threads et une copie local de la données (dans chaque thread) qui feras une tentative de synchronisation lors d'un get().<br/>
  <br/>
- Utilise <a href="https://crates.io/crates/parking_lot" rel="noopener noreferrer nofollow" target="_blank">Parking_lot</a> et <a href="https://crates.io/crates/arc-swap" rel="noopener noreferrer nofollow" target="_blank">Arc-swap</a>
+ Utilise <a class="externe" href="https://crates.io/crates/parking_lot" rel="noopener noreferrer nofollow" target="_blank">Parking_lot</a> et <a class="externe" href="https://crates.io/crates/arc-swap" rel="noopener noreferrer nofollow" target="_blank">Arc-swap</a>
 pagePersoHconfig_desc = Une classe de gestion de configuration de fichier JSON, réaliser en rust.
 pagePersoSingletonThread_desc = Permet l'utilisation d'une fonction FnMut comme un singleton via un thread dédié, réaliser en rust.
-pagePersoHwe_desc = Il s'agissait simplement ensemble de classe en PHP que j'utilisais beaucoup, notamment Hyultis\loader qui me permet,
+pagePersoHwe_desc1 = Il s'agissait simplement ensemble de classe en PHP que j'utilisais beaucoup, notamment <b>Hyultis\loader</b> qui me permet,
  à l'inverse de composer,
- de charger les classes dynamiquement pendant le développement (sans toute la surcouche d'un symfony par exemple), ainsi que d'éviter les normes PSR.<br/>
+ de charger les classes dynamiquement pendant le développement (sans toute la surcouche et la lenteur d'un <b>symfony</b> par exemple), ainsi que d'éviter les <b>normes PSR</b>.<br/><br/>
  Mon ancient site, ainsi que des projets pro on été réalisé dessus (ou sur une base équivalente).
  <br/>
- La structure du projet par défaut (configurable dans le phpEntry.php)<br/>
+pagePersoHwe_desc2 = La structure du projet par défaut (configurable dans le phpEntry.php) :<br/><br/>
  <ul>
   <li>racine<ul>
    <li>un dossier de configuration ("config" par défaut)</li>
@@ -82,16 +93,16 @@ pagePersoHwe_desc = Il s'agissait simplement ensemble de classe en PHP que j'uti
    <li>un dossier de source ("src" par défaut)</li>
    <li>un dossier de librairie ("vendors" par défaut)</li>
    <li>phpEntry.php : le fichier d'entrée</li>
-   </ul><li>
+   </ul></li>
  </ul>
- Le fichier d'entrée est le coeur du système, tout point d'entrée réel (commande console, vhost apache|nginx, etc) connait ainsi tout du projet (chemin root, configuration, etc)<br/>
+pagePersoHwe_desc3 = <b>Le fichier d'entrée</b> est le coeur du système, tout point d'entrée réel (commande console, vhost apache|nginx, etc) connait ainsi tout du projet (chemin root, configuration, etc)<br/>
  J'utilisais aussi un système de librairie externe agnostique, permettant d'en utiliser plusieurs à la fois (Exemple : Composer, npm, mais aussi un personnel "Hloader").<br/>
  <br/>
- Avant Hwe, j'utilisais un autre projet fait maison "Hcms", qui n'est plus du tout d'actualité aujourd'hui.
+ Avant Hwe, j'utilisais un autre projet fait maison <b>"Hcms"</b>, qui n'est plus du tout d'actualité aujourd'hui.
 
 pagePersoCasseBrique_desc = Casse brique réaliser en HTML5 est née suite a la volonté de tester les nouveautés inclues dans le HTML5, notamment la balise &lt;canvas&gt;.
 pagePersoCasseBrique_title = Casse brique
-pagePersoVidPHPConverter_desc = Utilitaire audio et video en php au travers de <a href="http://ffmpeg.org/" rel="noopener noreferrer nofollow" target="_blank">FFMpeg</a>.<br/>
+pagePersoVidPHPConverter_desc = Utilitaire audio et video en php au travers de <a class="externe" href="http://ffmpeg.org/" rel="noopener noreferrer nofollow" target="_blank">FFMpeg</a>.<br/>
  <br/>
  Ce script rend possible la lecture des informations d'un fichier multimédia (audio ou video), permet ainsi de connaître diverses informations : la durée, le bitrate, le codec, etc<br/>
  <br/>
@@ -106,13 +117,23 @@ pagePersoWowMyStats_desc = Mini-site de statistique sur des personnage de world 
  <br/>
  Mais entre l'évolution de l'armory de wow et mon désintéré du jeu, ce système ne fonctionne plus.
  
-pagePersoCV_desc = <h3>Experience professionnelles :</h3>
- <span style="font-size: 1.2em;font-weight: bold;">Concepteur Développeur</span><br/>
- <span style="font-style: italic">Chez <a href="https://www.hyultis.fr/" rel="noopener noreferrer nofollow" target="_blank">Hyultis</a> depuis 01/2023</span>
+pagePersoCV_desc = <h2>Experience professionnelles :</h2>
+ <h3>Développeur fullstack <span>Chez <a class="externe" href="https://www.thess-corp.fr/" rel="noopener noreferrer nofollow" target="_blank">Thess-corp</a> depuis 07/2024</span></h3>
  <ul>
- 	<li><b>Développement du jeu vidéo <a href="https://www.hyultis.fr/#heatchain" rel="noopener noreferrer nofollow" target="_blank">Heatchain</a></b>
+ 	<li><b>Développement, suivis et maintien d'un logiciel de suivis de patient avec appareil physique</b>
+ 		<ul>
+ 			<li>Back-end JAVA sur spring boot</li>
+ 			<li>Front-end Typescript sur react</li>
+ 			<li>Micro-service via kubernetes / Helm</li>
+ 			<li>Développement selon SCRUM et certification ISO 62304</li>
+ 		</ul>
+ 	</li>
+ </ul>
+ <h3>Concepteur Développeur <span>Chez <a class="externe" href="https://www.hyultis.fr/" rel="noopener noreferrer nofollow" target="_blank">Hyultis</a> depuis 01/2023</span></h3>
+ <ul>
+ 	<li><b>Développement du jeu vidéo <a class="externe" href="https://www.hyultis.fr/#heatchain" rel="noopener noreferrer nofollow" target="_blank">Heatchain</a></b>
  	<ul>
- 		<li>Apprentissage du langage <a href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">RUST</a></li>
+ 		<li>Apprentissage du langage <a class="externe" href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">RUST</a></li>
  		<li>Développement d'un moteur de jeux-vidéo complet multi-threading</li>
  		<ul>
  			<li>Système de rendu graphique (api Vulkan) avec plusieurs passe de rendu et résolution dynamique adaptatif</li>
@@ -132,10 +153,10 @@ pagePersoCV_desc = <h3>Experience professionnelles :</h3>
  	</ul>
  </ul>
  
- <span style="font-style: italic">Chez <a href="https://www.adec-sas.com/" rel="noopener noreferrer nofollow" target="_blank">SAS-ADEC</a> du 06/2012 au 08/2022</span>
+ <h3>Concepteur Développeur / Chez <a class="externe" href="https://www.adec-sas.com/" rel="noopener noreferrer nofollow" target="_blank">SAS-ADEC</a> du 06/2012 au 08/2022</span></h3>
  <ul>
  	<li><b>Développement dans le service EDI</b><ul>
- 		<li>Développement sur le logiciel <a href="https://www.axway.com/" rel="noopener noreferrer nofollow" target="_blank">AXWAY</a> : b2bi, mapping services, DML, BMC, JAVA</li>
+ 		<li>Développement sur le logiciel <a class="externe" href="https://www.axway.com/" rel="noopener noreferrer nofollow" target="_blank">AXWAY</a> : b2bi, mapping services, DML, BMC, JAVA</li>
  		<li>Ensemble de scripts de traitement en PHP spécifique à chaque partenaire.(~70 scripts différents)</li>
  		<li>Environnement de traces/debug des scripts développé sur mesure.</li>
  		<li>Système de recherche par metadata et de suivi complet des fichiers reçu/transmis et toutes leurs étapes d’évolutions via une api et une interface web. (+15 000 flux et +250 000 appel api par jour)</li>
@@ -146,8 +167,7 @@ pagePersoCV_desc = <h3>Experience professionnelles :</h3>
  	<li>Avant 2016 : Conseils techniques et développement PHP dans une équipe de 2 personnes sur le même projet de TIE.</li>
  </ul>
  
- <span style="font-size: 1.2em;font-weight: bold;">Développeur informatique</span><br/>
- <span style="font-style: italic">Chez <a href="https://tiekinetix.com/fr" rel="noopener noreferrer nofollow" target="_blank">TIE KINETIX</a> du 11/2010 au 06/2012</span>
+ <h3>Développeur informatique <span style="font-style: italic">Chez <a class="externe" href="https://tiekinetix.com/fr" rel="noopener noreferrer nofollow" target="_blank">TIE KINETIX</a> du 11/2010 au 06/2012</span></h3>
  <ul>
  	<li>Responsable d'un projet client ADEC conséquent (100 études d'huissiers abonnées à l'application, jusqu'à 4 développeurs).</li>
  	<li>Analyses et estimations des délais de développement des projets confiés à l'équipe.</li>
@@ -157,14 +177,14 @@ pagePersoCV_desc = <h3>Experience professionnelles :</h3>
  <h3>Compétences et qualifications :</h3>
  
  <ul>
- 	<li><b>PHP 7+ :</b> objet, autoloader (composer,...), <i>etc</i></li>
- 	<li><b>WEB :</b> HTML, CSS, javascript, Vue.js, D3, <i>etc</i></li>
- 	<li><b>Rust :</b> compilation multi-target, vulkano, winit, etc</li>
- 	<li><b>Java :</b> objet, cryptage, lib standard, apaches commons, <i>etc</i></li>
- 	<li><b>Langages SQL :</b> MySQL/mariaDB, PgSQL</li>
- 	<li><b>Langages secondaires :</b> c++</li>
- 	<li><b>IDE :</b> netbeans, phpstorm</li>
- 	<li><b>Administration de serveur linux :</b> Ubuntu/debian, iptable, ssh, docker, apache, mysql, pgsql, gitlab, confluence, matrix/element, déploiement auto, <i>etc</i></li>
+    <li><b>Langage avec expertise :</b> Rust, JAVA, PHP</li>
+    <li><b>Langage maitrisé :</b> Web (javascript,Html,CSS), SQL(mysql,mariadb,pgsql)</li>
+    <li><b>Langage connue :</b> Dlang, C++</li>
+    <li><b>Paradigme de langages:</b> POO, Standards, Design pattern, chiffrements, REST, <i>etc</i></li>
+    <li><b>Paradigme personnel:</b> Apprentissage continue, Autonomie complète, Adaptabilité, Initiative d'amélioration</li>
+    <li><b>DEV ops :</b> Docker, Helm, Caddy, minikube, Github, Gitlab, linux, Bash/Sh</li>
+ 	<li><b>IDE :</b> intellij IDEA, netbeans</li>
+ 	<li><b>Administration de serveur linux :</b> Ubuntu/debian, iptable, ssh, apache, mysql, pgsql, gitlab, confluence, matrix/element, déploiement auto, <i>etc</i></li>
  </ul>
  
  <h3> Diplômes :</h3>
@@ -180,18 +200,5 @@ pagePersoCV_desc = <h3>Experience professionnelles :</h3>
  	<li>HABITAT du GARD (6 SEMAINES 2009) Société de logements sociaux (service Informatique).</li>
  </ul>
  
- <h3> Projets personnel :</h3>
- <ul>
- 	<li>Site web personnel : <a href="https://www.hyultis.fr" rel="noopener noreferrer nofollow" target="_blank">https://www.hyultis.fr</a></li>
- 	<li>Bibliothèques de fonction de conversion vidéo en php, de surcouche PDO, Trace, traduction par clé.</li>
- 	<li>Jeux de casse brique en ligne</li>
- </ul>
- 
- 
- <h3> Projets client :</h3>
- <ul>
- 	<li>Site web d'une association de la défense des consommateurs : <a href="https://www.orgeco30.fr" rel="noopener noreferrer nofollow" target="_blank">https://www.orgeco30.fr</a></li>
- </ul>
- 
  <h3> Loisir :</h3>
- Programmation, jeux, lecture, actualités/technologies en général.
+ Programmation, jeux, lecture, actualités/technologies en général, musique.

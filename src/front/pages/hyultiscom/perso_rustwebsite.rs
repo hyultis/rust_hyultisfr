@@ -8,10 +8,10 @@ use crate::front::utils::translate::Translate;
 pub fn PersoRustWebsite() -> impl IntoView {
 
 	view! {
-		<h2><span><Translate key="pagePersoRustWebsite_title"/><br/><br/></span></h2>
+		<h2><A href="/Perso"><Translate key="menu_me"/></A>" / "<Translate key="pagePersoRustWebsite_title"/></h2>
 
 		<article>
-			<Translate key="pagePersoRustWebsite_desc"/>" "<A href="PersoHwe">Hwe</A>.
+			<div><Translate key="pagePersoRustWebsite_desc"/>" "<A href="../Hwe">Hwe</A>.</div>
 		</article>
     }
 }
