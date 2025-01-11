@@ -7,6 +7,7 @@ use axum::middleware;
 use axum::middleware::Next;
 use axum::response::Response;
 use Htrace::HTrace;
+use http::header::*;
 
 mod api;
 
@@ -70,6 +71,7 @@ async fn main() {
         })
         .fallback(leptos_axum::file_and_error_handler(shell))
 	    .layer(middleware::from_fn(tracing_request))
+	    .layer(middleware::from_fn(http_good_practice))
         .with_state(leptos_options);
 
     // run our app with hyper
@@ -83,14 +85,28 @@ async fn tracing_request(
 	request: Request,
 	next: Next,
 ) -> Response {
-	// do something with `request`...
-
 	let method = request.method().to_string();
 	let uri = request.uri().to_string();
 
 	let response = next.run(request).await;
 
 	HTrace!("Request {} on {} : {}", method, uri, response.status());
+
+	response
+}
+
+
+async fn http_good_practice(
+	request: Request,
+	next: Next,
+) -> Response {
+	let mut response = next.run(request).await;
+
+	response.headers_mut().insert(X_FRAME_OPTIONS, HeaderValue::from_static("DENY"));
+	response.headers_mut().insert(CONTENT_SECURITY_POLICY, HeaderValue::from_static("frame-ancestors 'none'"));
+	response.headers_mut().insert(X_CONTENT_TYPE_OPTIONS, HeaderValue::from_static("nosniff"));
+	response.headers_mut().insert(STRICT_TRANSPORT_SECURITY, HeaderValue::from_static("max-age=63072000; includeSubDomains; preload"));
+	response.headers_mut().insert(REFERRER_POLICY, HeaderValue::from_static("no-referrer"));
 
 	response
 }
