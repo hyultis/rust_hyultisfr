@@ -1,5 +1,5 @@
 use leptos::{component, view, IntoView};
-use leptos::prelude::{ClassAttribute, GlobalAttributes};
+use leptos::prelude::{GlobalAttributes};
 use leptos_router::components::A;
 use leptos::prelude::ElementChild;
 use crate::front::utils::translate::Translate;

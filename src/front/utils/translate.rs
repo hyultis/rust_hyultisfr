@@ -72,7 +72,7 @@ pub fn TranslateFn(
 
 	let altkey = key.clone();
 	view! {
-		<Transition fallback=move || view! { <span>{format!("{}_fallback",altkey.clone()())}</span> }>
+		<Transition fallback=move || view! { <span>{format!("{}_fallback",altkey.clone()())}</span> }.into_any()>
 			{move || translate.read().as_ref().cloned().map(|translated|{
 					if(translated.contains(splitted))
 					{
@@ -82,17 +82,17 @@ pub fn TranslateFn(
 						let suffix = suffix.to_string();
 						if let Some(children) = &children
 						{
-							view! { <span><span inner_html=move || prefix.clone()/>{children()}<span inner_html=move || suffix.clone()/></span > }.into_any()
+							view! { <span>""<span inner_html=move || prefix.clone()/>{children()}<span inner_html=move || suffix.clone()/></span> }.into_any()
 						}
 						else
 						{
-							view! { <span><span inner_html=move || prefix.clone()/><span inner_html=move || suffix.clone()/></span> }.into_any()
+							view! { <span>""<span inner_html=move || prefix.clone()/><span inner_html=move || suffix.clone()/></span> }.into_any()
 						}
 					}
 					else
 					{
-						//view! { <span>{translated.clone()}</span> }.into_any()
-						view! { <span inner_html=move || translated.clone()/> }.into_any()
+						// first "" is important to fix hydration bug from fallback
+						view! { <span>""<span inner_html=move || translated.clone()/></span> }.into_any()
 					}
 				})
 			}

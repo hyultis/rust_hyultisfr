@@ -2,8 +2,7 @@
 #![allow(non_snake_case)]
 #![allow(dead_code)]
 
-use std::net::SocketAddr;
-use axum::extract::{ConnectInfo, Request};
+use axum::extract::Request;
 use axum::middleware;
 use axum::middleware::Next;
 use axum::response::Response;
@@ -77,11 +76,10 @@ async fn main() {
     // `axum::Server` is a re-export of `hyper::Server`
     log!("listening on http://{}", &addr);
 	let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
-	axum::serve(listener, app.into_make_service_with_connect_info::<SocketAddr>()).await.unwrap();
+	axum::serve(listener, app.into_make_service()).await.unwrap();
 }
 
 async fn tracing_request(
-	ConnectInfo(addr): ConnectInfo<SocketAddr>,
 	request: Request,
 	next: Next,
 ) -> Response {
@@ -92,7 +90,7 @@ async fn tracing_request(
 
 	let response = next.run(request).await;
 
-	HTrace!("Request {} on {} by {} : {}", method, uri, addr, response.status());
+	HTrace!("Request {} on {} : {}", method, uri, response.status());
 
 	response
 }

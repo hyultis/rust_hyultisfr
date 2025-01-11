@@ -5,7 +5,7 @@ use leptos::component;
 use leptos::view;
 use leptos::IntoView;
 use leptos::prelude::*;
-use leptos_meta::{provide_meta_context, Link, Meta, MetaTags, Stylesheet, Title};
+use leptos_meta::{provide_meta_context, Meta, MetaTags, Stylesheet, Title};
 use leptos_router::components::{Route, Router, Routes, A};
 use leptos_router::path;
 use leptos_use::use_locales;
@@ -71,8 +71,6 @@ pub fn App() -> impl IntoView {
 		// sets the document title
 		<Title text="Hyultis"/>
 		<Meta name="description" content="Site personnel de hyultis"/>
-
-		<Link rel="preload" fetchpriority="high" as_="image" href="./img/header.png" type_="image/png"/>
 
 		<div class="background">
 		   <span></span>
