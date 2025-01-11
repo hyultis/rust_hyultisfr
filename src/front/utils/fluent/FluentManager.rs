@@ -89,8 +89,10 @@ impl FluentManager {
 			}
 		};
 
-		let flt_res = FluentResource::try_new(content)
-			.expect("Failed to parse an FTL string.");
+		let Ok(flt_res) = FluentResource::try_new(content) else {
+			log!("Failed to parse an FTL string.");
+			return;
+		};
 
 		let mut bindingMap = self._resources.write().unwrap();
 		match bindingMap.get_mut(lang)
@@ -99,7 +101,10 @@ impl FluentManager {
 				bundle.content.add_resource_overriding(flt_res);
 			},
 			None => {
-				let langid: LanguageIdentifier = lang.parse().expect("Failed to parse lang ID.");
+				let Ok(langid) = lang.parse() else {
+					log!("failed to parse lang ID");
+					return;
+				};
 				let mut bundle = FluentBundle::new_concurrent(vec![langid]);
 
 				bundle.add_resource_overriding(flt_res);
