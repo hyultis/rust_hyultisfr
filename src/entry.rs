@@ -146,6 +146,8 @@ pub fn App() -> impl IntoView {
 pub fn Page404() -> impl IntoView {
 	view!{
 		<h2><Translate key="page404_title"/></h2>
-		<Translate key="page404_content" ><A href="/"><Translate key="menu_home"/></A></Translate>
+		<article>
+			<Translate key="page404_content" ><A href="/"><Translate key="menu_home"/></A></Translate>
+		</article>
 	}
 }

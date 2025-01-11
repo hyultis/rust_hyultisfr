@@ -2,6 +2,11 @@
 #![allow(non_snake_case)]
 #![allow(dead_code)]
 
+use std::net::SocketAddr;
+use axum::extract::{ConnectInfo, Request};
+use axum::middleware;
+use axum::middleware::Next;
+use axum::response::Response;
 use Htrace::HTrace;
 
 mod api;
@@ -65,13 +70,31 @@ async fn main() {
             move || shell(leptos_options.clone())
         })
         .fallback(leptos_axum::file_and_error_handler(shell))
+	    .layer(middleware::from_fn(tracing_request))
         .with_state(leptos_options);
 
     // run our app with hyper
     // `axum::Server` is a re-export of `hyper::Server`
     log!("listening on http://{}", &addr);
 	let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
-	axum::serve(listener, app.into_make_service()).await.unwrap();
+	axum::serve(listener, app.into_make_service_with_connect_info::<SocketAddr>()).await.unwrap();
+}
+
+async fn tracing_request(
+	ConnectInfo(addr): ConnectInfo<SocketAddr>,
+	request: Request,
+	next: Next,
+) -> Response {
+	// do something with `request`...
+
+	let method = request.method().to_string();
+	let uri = request.uri().to_string();
+
+	let response = next.run(request).await;
+
+	HTrace!("Request {} on {} by {} : {}", method, uri, addr, response.status());
+
+	response
 }
 
 #[cfg(not(feature = "ssr"))]
