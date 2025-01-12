@@ -12,6 +12,11 @@ pub fn PersoRustWebsite() -> impl IntoView {
 
 		<article>
 			<div><Translate key="pagePersoRustWebsite_desc"/>" "<A href="../Hwe">Hwe</A>.</div>
+
+			<div>
+				<Translate key="pagePerso_all_link"/>" "
+				<a href="https://github.com/hyultis/rust_hyultisfr" rel="noopener noreferrer nofollow" target="_blank">Github</a>
+			</div>
 		</article>
     }
 }
