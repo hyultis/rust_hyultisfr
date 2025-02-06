@@ -26,6 +26,7 @@ use crate::front::utils::translate::{Translate, TranslateCurrentLang};
 use crate::front::utils::usersData::{UserData};
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
+	//	<meta http-equiv="Content-Security-Policy" content="default-src https: * 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' 'wasm-unsafe-eval'; script-src-elem *"/>
 	view! {
 		<!DOCTYPE html>
 		<html lang="en">
@@ -33,6 +34,8 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
 				<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 				<meta name="viewport" content="width=device-width, initial-scale=1"/>
 				<meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin"/>
+				<meta lang="fr" name="description" content="Site personnel de Hyultis"/>
+				<meta lang="en" name="description" content="Hyultis's website"/>
 				//<meta http-equiv="Content-Security-Policy" content="script-src https: 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'"/> // actuellement instable avec leptos ?
 				<AutoReload options=options.clone() />
 				<HydrationScripts options/>
