@@ -1,5 +1,5 @@
 # Get started with a build env with Rust nightly
-FROM rustlang/rust:nightly-alpine AS builder
+FROM rust:1.84-alpine AS builder
 
 ENV BUILDNAME=hyultisfr
 

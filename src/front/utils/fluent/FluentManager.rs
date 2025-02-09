@@ -4,7 +4,6 @@ use fluent::bundle::FluentBundle;
 use fluent::{FluentArgs, FluentResource};
 use intl_memoizer::concurrent::IntlLangMemoizer;
 use leptos::logging::log;
-use unic_langid::LanguageIdentifier;
 use crate::api::translateBooks::API_translate_getBook;
 
 struct BookHolder

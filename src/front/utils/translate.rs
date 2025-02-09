@@ -22,7 +22,12 @@ pub fn TranslateCurrentLang() -> impl IntoView {
 		}
 	);
 	view!{
-		<TranslateFn key=move || langActual.read().clone().unwrap_or("swap_to_EN".to_string())/>
+		<Transition fallback=move || view! { <TranslateFn key=move || "swap_to_EN".to_string()/> }.into_any()>
+
+			{move || langActual.read().as_ref().cloned().map(|translated|{
+				view! { <TranslateFn key=move || translated.to_string()/> }.into_any()
+			})}
+		</Transition>
 	}
 }
 

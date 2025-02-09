@@ -1,3 +1,5 @@
+#![allow(unused_imports)]
+
 use std::any::Any;
 use std::fmt::{Debug, Display};
 use leptos::prelude::Action;
