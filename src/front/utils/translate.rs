@@ -3,7 +3,7 @@ use std::sync::Arc;
 use leptos::{component, view, IntoView};
 use leptos::children::ChildrenFn;
 use leptos::html::InnerHtmlAttribute;
-use leptos::prelude::{expect_context, Get, IntoAny, Read, Resource};
+use leptos::prelude::{expect_context, Get, IntoAny, Resource};
 use leptos::suspense::Transition;
 use reactive_stores::Store;
 use leptos::prelude::ElementChild;
@@ -12,22 +12,11 @@ use crate::front::utils::usersData::{UserData, UserDataStoreFields};
 
 #[component]
 pub fn TranslateCurrentLang() -> impl IntoView {
-	let userData = expect_context::<Store<UserData>>();
-	let langActual = Resource::new(
-		move || userData.lang().get(),
-		move |lang| async move {
-			let mut tmp = "swap_to_".to_string();
-			tmp.push_str(lang.clone().as_str());
-			return tmp;
-		}
-	);
+	let lang = move || expect_context::<Store<UserData>>().lang().get();
 	view!{
-		<Transition fallback=move || view! { <TranslateFn key=move || "swap_to_EN".to_string()/> }.into_any()>
-
-			{move || langActual.read().as_ref().cloned().map(|translated|{
-				view! { <TranslateFn key=move || translated.to_string()/> }.into_any()
-			})}
-		</Transition>
+		{move || {
+			view! { <TranslateFn key=move || format!("swap_to_{}",lang())/> }.into_any()
+		}}
 	}
 }
 
@@ -57,7 +46,7 @@ pub fn TranslateFn(
 	#[prop(optional)]
 	children: Option<ChildrenFn>) -> impl IntoView {
 
-	let key = Arc::new(move || key());
+	let key = Arc::new(key);
 	let userData = expect_context::<Store<UserData>>();
 	let splitted= "{--$chidren--}";
 
@@ -78,7 +67,7 @@ pub fn TranslateFn(
 	let altkey = key.clone();
 	view! {
 		<Transition fallback=move || view! { <span>{format!("{}_fallback",altkey.clone()())}</span> }.into_any()>
-			{move || translate.read().as_ref().cloned().map(|translated|{
+			{move || translate.get().map(|translated|{
 					if(translated.contains(splitted))
 					{
 						let splitVar = translated.split_once(splitted);
