@@ -23,7 +23,10 @@ impl UserData {
 	{
 		let lang = lang.into();
 		let splittedVal = lang.split('-').collect::<Vec<&str>>();
-		self.lang = splittedVal.first().unwrap_or(&"EN").to_string().to_uppercase();
+		let newlang = splittedVal.first().unwrap_or(&"EN").to_string().to_uppercase();
+		if(self.lang != newlang) {
+			self.lang = splittedVal.first().unwrap_or(&"EN").to_string().to_uppercase();
+		}
 	}
 }
 

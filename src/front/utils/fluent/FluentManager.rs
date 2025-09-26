@@ -74,6 +74,8 @@ impl FluentManager {
 
 	async fn addResource(&self, lang: &String, timestamp: u64)
 	{
+
+		println!("addResource seek book");
 		let (content,newtime) = match API_translate_getBook(lang.clone(), timestamp).await
 		{
 			Ok(data) => {

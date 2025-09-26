@@ -16,6 +16,14 @@ pub fn PersoRustWebsite() -> impl IntoView {
 			<div>
 				<Translate key="pagePerso_all_link"/>" "
 				<a href="https://github.com/hyultis/rust_hyultisfr" rel="noopener noreferrer nofollow" target="_blank">Github</a>
+				<br/><br/>
+				Icons :<br/>
+				<a href="https://www.flaticon.com/fr/icone-gratuite/curriculum-vitae_1150635" rel="noopener noreferrer nofollow" target="_blank">curriculum-vitae</a><br/>
+				<a href="https://www.flaticon.com/fr/icone-gratuite/apprentissage-en-ligne_2436874" rel="noopener noreferrer nofollow" target="_blank">apprentissage-en-ligne</a><br/>
+				<a href="https://www.flaticon.com/fr/icone-gratuite/valide_8766381" rel="noopener noreferrer nofollow" target="_blank">valide</a><br/>
+				<a href="https://www.flaticon.com/fr/icone-gratuite/diminue_4847128" rel="noopener noreferrer nofollow" target="_blank">diminue</a><br/>
+				<a href="https://rustacean.net/" rel="noopener noreferrer nofollow" target="_blank">Ferris</a>
+
 			</div>
 		</article>
     }

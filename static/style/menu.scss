@@ -1,84 +1,94 @@
 nav.mainmenu {
-  display: flex;
-  height: 1.5em;
-  padding-left: 15%;
-  padding-right: 15%;
-  flex-direction: column;
+	display: flex;
+	height: 1.5em;
+	padding-left: 5.0em;
+	padding-right: 5.0em;
+	flex-direction: column;
+	position: relative;
+	z-index: 2;
 }
 
-nav.mainmenu > ul > li:first-child{
-  flex: 1 1 60%;
-  flex-shrink: 99;
-  background: none;
-  border: none;
-  box-shadow: none;
+nav.mainmenu > ul > li:first-child {
+	flex: 1 1 60%;
+	flex-shrink: 99;
+	background: none;
+	border: none;
+	box-shadow: none;
 }
 
-nav.mainmenu ul{
-  list-style-type: none;
-  display: flex;
+nav.mainmenu ul {
+	list-style-type: none;
+	display: flex;
 }
 
-nav.mainmenu ul li{
-  flex: 1 1 auto;
-  text-align: center;
-  position: relative;
-  background-color: #1d0327;
-  padding: 3px;
-  border-radius: 15px;
-  border: 2px solid var(--mainbackground);
-  box-shadow: 0px 1px 2px black;
+nav.mainmenu ul li {
+	flex: 1 1 auto;
+	text-align: center;
+	position: relative;
+	background-color: #1d0327;
+	padding: 3px;
+	border-radius: 8px;
+	border: 1px solid var(--mainbackground);
+	box-shadow: 0px 1px 2px black;
 }
 
-nav.mainmenu li{
-  text-wrap: nowrap;
+nav.mainmenu li {
+	text-wrap: nowrap;
 }
 
-nav.mainmenu clickable{
-  display: block;
-  text-decoration: none;
-  color: var(--defaultfontcolor);
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
+nav.mainmenu .clickable {
+	display: block;
+	text-decoration: none;
+	color: var(--defaultfontcolor);
+	border-bottom: 2px solid transparent;
+	cursor: pointer;
 }
 
-nav.mainmenu a{
-  text-decoration: none;
-  color: var(--defaultfontcolor);
-  cursor: pointer;
+nav.mainmenu .clickable:hover {
+	color: var(--urlcolor);
+	border-bottom: 2px solid gold;
 }
 
-nav.mainmenu a:hover{
-  color: var(--urlcolor);
-  border-bottom: 2px solid gold;
+nav.mainmenu .clickable:hover a {
+	color: var(--urlcolor);
 }
 
-nav.mainmenu li:hover > ul{
-  display: flex;
-  flex-flow: column wrap;
+nav.mainmenu a {
+	text-decoration: none;
+	color: var(--defaultfontcolor);
+	cursor: pointer;
 }
 
-nav.mainmenu li > ul{
-  display: none;
-  position: absolute;
-  z-index: 1000;
-  margin: 0 auto;
-  top: +1.2em;
-  left: +15px;
-  padding-top: 1em;
+nav.mainmenu a:hover {
+	color: var(--urlcolor);
+}
+
+nav.mainmenu li:hover > ul {
+	display: flex;
+	flex-flow: column wrap;
+}
+
+nav.mainmenu li > ul {
+	display: none;
+	position: absolute;
+	z-index: 1000;
+	margin: 0 auto;
+	top: +1.2em;
+	left: +15px;
+	padding-top: 1em;
 }
 
 
-nav.mainmenu li > ul li{
-  box-shadow: 0px 1px 2px black;
-  padding: 5px 10px;
+nav.mainmenu li > ul li {
+	box-shadow: 0px 1px 2px black;
+	padding: 5px 10px;
 }
 
-nav.mainmenu li:has(ul) > span::after{
-  content:" ▼";
-  font-size: 12px;
+nav.mainmenu li:has(ul) > span::after {
+	content: " ▼";
+	font-size: 12px;
 }
 
 nav.mainmenu li:before {
-  content: "";
+	content: "";
 }

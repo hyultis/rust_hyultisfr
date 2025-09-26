@@ -12,12 +12,10 @@ use crate::front::utils::usersData::{UserData, UserDataStoreFields};
 
 #[component]
 pub fn TranslateCurrentLang() -> impl IntoView {
-	let lang = move || expect_context::<Store<UserData>>().lang().get();
-	view!{
-		{move || {
-			view! { <TranslateFn key=move || format!("swap_to_{}",lang())/> }.into_any()
-		}}
-	}
+	view! { <TranslateFn key=move || {
+		let tmp = expect_context::<Store<UserData>>().lang().get();
+		return format!("swap_to_{}",tmp);
+	}/> }.into_any()
 }
 
 #[component]
@@ -67,7 +65,8 @@ pub fn TranslateFn(
 	let altkey = key.clone();
 	view! {
 		<Transition fallback=move || view! { <span>{format!("{}_fallback",altkey.clone()())}</span> }.into_any()>
-			{move || translate.get().map(|translated|{
+			{move || {
+				translate.get().map(|translated|{
 					if(translated.contains(splitted))
 					{
 						let splitVar = translated.split_once(splitted);
@@ -85,11 +84,11 @@ pub fn TranslateFn(
 					}
 					else
 					{
-						// first "" is important to fix hydration bug from fallback
+						// first "" is important to fix the hydration bug from fallback
 						view! { <span>""<span inner_html=move || translated.clone()/></span> }.into_any()
 					}
 				})
-			}
+			}}
 		</Transition>
 	}
 }

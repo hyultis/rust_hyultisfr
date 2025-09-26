@@ -8,7 +8,7 @@ use leptos::prelude::StyleAttribute;
 #[component]
 pub fn Accueil() -> impl IntoView {
 	view! {
-		<h2>Home</h2>
+		<h2><Translate key="pageAccueil_title"/></h2>
 
 		<article style="margin-bottom: 3em">
 			<Translate key="pageAccueil_desc"/>
@@ -20,6 +20,9 @@ pub fn Accueil() -> impl IntoView {
 			//<!--<span class="game" style="cursor: not-allowed" title="Future game incoming"><img style="background: orange;" src="./img/unkowngame.png" alt="unkown logo"></span>-->
 		</div>
 
-		<Translate key="pageAccueil_goperso"/>" "<A href="/Perso"><Translate key="menu_me"/></A>
+		<p>
+			<br/>
+			<Translate key="pageAccueil_goperso"/>" "<A href="/Perso"><Translate key="menu_me"/></A>
+		</p>
 	}
 }

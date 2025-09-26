@@ -53,8 +53,11 @@ pub fn App() -> impl IntoView {
 	// Provides context that manages stylesheets, titles, meta tags, etc.
 	provide_meta_context();
 
-	let locales = use_locales();
-	provide_context(Store::new(UserData::new(locales.get().first().unwrap_or(&"EN".to_string()))));
+	if(use_context::<Store<UserData>>().is_none())
+	{
+		let locales = use_locales();
+		provide_context(Store::new(UserData::new(locales.get().first().unwrap_or(&"EN".to_string()))));
+	}
 
 	let userData = expect_context::<Store<UserData>>();
 	let (email, _) = signal("hyultis@gmail.com".to_string());

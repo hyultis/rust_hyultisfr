@@ -16,11 +16,15 @@ pub fn Perso() -> impl IntoView {
 		<article>
 			<div>
 				<Translate key="pagePerso_desc_line1">{move || now.year() - 1989}</Translate><br/><br/>
-				<span><Translate key="pagePerso_desc_line2"><A href="CV">Curriculum vitae</A></Translate><br/><br/></span>
+
+				<img src="img/curriculum-vitae.png" style="width:2.5em;padding-left: 5px"/><br/>
+				<span><Translate key="pagePerso_desc_line2"><A href="CV">Curriculum vitae</A></Translate><br/><br/>
+
+				<img src="img/apprentissage-en-ligne.png" style="width:2.5em;"/><br/></span>
 				<Translate key="pagePerso_desc_line3"/>
 			</div>
 			<div style="text-align: left">
-				<Translate key="pagePerso_desc_projetok"/><br/><br/>
+				<img src="img/valide.png" style="width:1.5em;display: inline-block; margin-bottom: -5px;"/> <Translate key="pagePerso_desc_projetok"/><br/><br/>
 				<ul>
 					<li><A href="/">Home</A> " ":" " <Translate key="pagePerso_projet_enterprise_desc"/></li>
 		            <li><A href="RustWebsite">Website in rust</A> " ":" "<Translate key="pagePerso_projet_rustwebsite_desc"/></li>
@@ -31,7 +35,7 @@ pub fn Perso() -> impl IntoView {
 				</ul>
 			</div>
 			<div style="text-align: left">
-				<Translate key="pagePerso_desc_projetko"/><br/><br/>
+				<img src="img/diminue.png" style="width:1.5em;display: inline-block; margin-bottom: -5px;"/> <Translate key="pagePerso_desc_projetko"/><br/><br/>
 				<ul>
 		            <li><A href="Hwe">Hwe</A>" ":" "<Translate key="pagePerso_projet_hwe_desc"/></li>
 		            <li><A href="ORGECO">OR.GE.CO 30</A>" ":" "<Translate key="pagePerso_projet_orgeco_desc"/></li>

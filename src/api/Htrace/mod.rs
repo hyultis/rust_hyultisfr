@@ -2,15 +2,15 @@ use leptos::prelude::ServerFnError;
 use leptos::server;
 
 #[cfg(feature = "ssr")]
-use Htrace::Type::Type as Htype;
+use Htrace::components::level::Level;
 #[cfg(feature = "ssr")]
-use Htrace::HTracer::HTracer;
+use Htrace::htracer::HTracer;
 use serde::{Deserialize, Serialize};
 
 #[server]
 pub async fn API_Htrace_log( content: String, htype: Type, file: String, line: u32) -> Result<(), ServerFnError>
 {
-	HTracer::log(&content, htype.to_Htype(), file.as_str(), line);
+	HTracer::trace(&content, htype.to_Htype(), file.as_str(), line, vec![]);
 	return Ok(());
 }
 
@@ -30,17 +30,17 @@ pub enum Type
 #[cfg(feature = "ssr")]
 impl Type
 {
-	pub fn to_Htype(&self) -> Htype
+	pub fn to_Htype(&self) -> Level
 	{
 		match self {
-			Type::DEBUG => Htype::DEBUG,
-			Type::NORMAL => Htype::NORMAL,
-			Type::NOTICE => Htype::NOTICE,
-			Type::NOTICEDERR => Htype::NOTICEDERR,
-			Type::WARNING => Htype::WARNING,
-			Type::DEBUGERR => Htype::DEBUGERR,
-			Type::ERROR => Htype::ERROR,
-			Type::FATAL => Htype::FATAL,
+			Type::DEBUG => Level::DEBUG,
+			Type::NORMAL => Level::NORMAL,
+			Type::NOTICE => Level::NOTICE,
+			Type::NOTICEDERR => Level::NOTICEDERR,
+			Type::WARNING => Level::WARNING,
+			Type::DEBUGERR => Level::DEBUGERR,
+			Type::ERROR => Level::ERROR,
+			Type::FATAL => Level::FATAL,
 		}
 	}
 }

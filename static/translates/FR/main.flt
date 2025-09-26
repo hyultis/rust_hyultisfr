@@ -5,7 +5,7 @@ swap_to_EN = 🇬🇧 English
 swap_to_FR = 🇫🇷 Français
 
 # Root
-pageRoot_foot = Entièrement réaliser avec <a class="externe" href="https://leptos.dev/" rel="noopener noreferrer nofollow" target="_blank">leptos</a> et <a class="externe" href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">rust</a>.
+pageRoot_foot = Entièrement réalisé avec <a class="externe" href="https://leptos.dev/" rel="noopener noreferrer nofollow" target="_blank">leptos</a> et <a class="externe" href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">rust</a>.
 pageRoot_foot_design = Conception par
 
 #page 404
@@ -13,22 +13,23 @@ page404_title = Page introuvable
 page404_content = Désoler, cette page est introuvable. vous pouvez allez sur { $children }.
 
 #page Accueil ------------------------------------------
+pageAccueil_title = Accueil
 pageAccueil_desc = Bienvenue sur le site de <b>Hyultis</b>, je crée des jeux-vidéos.
-pageAccueil_goperso = Vous voulez en savoir plus sur moi ? cliquez ici :
+pageAccueil_goperso = Si vous souhaitez en savoir plus sur moi, cliquez ici : 
 
 #page game heatchain
 pageGameHeatchain_desc = <br/><br/>
  <b>Heatchain</b> est un jeu d'arcade rapide et intense, où la concentration et la réactivité sont essentielles.<br/>
  <br/>
- <img src="/img/heatchain/rune1.png"/>
+ <img src="/img/heatchain/rune1.png" style="margin-left: 47%;"/>
  <br/>
  Le but est de trouver le plus rapidement possible la prochaine glyphe parmi celles présentes sur le plateau.<br/>
  <br/>
- <img src="/img/heatchain/bonus.png"/>
+ <img src="/img/heatchain/bonus.png" style="margin-left: 47%;"//>
  <br/>
  Enchaînez les glyphes corrects, collectez les bonus, et formez la plus longue chaîne possible pour atteindre le score maximum !<br/>
  <br/>
- <img src="/img/heatchain/rune2.png"/>
+ <img src="/img/heatchain/rune2.png" style="margin-left: 47%;"//>
  <br/>
  Avec ses parties courtes, <b>Heatchain</b> offre une expérience arcade palpitante, où chaque seconde compte pour maximiser votre score et réaliser la chaîne parfaite.<br/>
  <br/>
@@ -39,19 +40,20 @@ pageGameHeatchain_link = <h3>Découvrez le jeu sur :</h3>
 pagePerso_title = A propos de moi
 pagePerso_desc_line1 = Je m'appelle <b>Hyultis</b>, j'ai { $children } ans et je suis passionné par la programmation depuis mon enfance.
 pagePerso_desc_line2 = Vous pouvez voir mon { $children }
-pagePerso_desc_line3 = Je continue d'appendre, comprendre et d'expérimenter de nouvelles solutions, langages, paradigmes<br/><br/>
+pagePerso_desc_line3 = Je continue d'apprendre, comprendre et d'expérimenter de nouvelles solutions, langages, paradigmes.<br/><br/>
+ <img src="img/cuddlyferris.svg" style="width:2.5em;"/><br/>
  Le plus récent concerne le langage <a class="externe" href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">Rust</a> que je trouve agréable, stable, et remplis de bonnes idées
 pagePerso_desc_projetok = Projets en cours :
 pagePerso_desc_projetko = Projets abandonnés :
-pagePerso_projet_enterprise_desc = Mon auto-entreprise, je crée des jeux-vidéos.
-pagePerso_projet_rustwebsite_desc = Le site actuel, réaliser avec leptos et rust
+pagePerso_projet_enterprise_desc = Mon auto-entreprise, je crée des jeux vidéo.
+pagePerso_projet_rustwebsite_desc = Le site actuel, réalisé avec leptos et rust
 pagePerso_projet_htrace_desc = Une classe de trace en rust
 pagePerso_projet_hconfig_desc = Une classe de configuration en rust
-pagePerso_projet_harcmut_desc = Une classe de synchronisation de données avec cache entre thread en rust
-pagePerso_projet_singletonthread_desc = Une classe de gestion de thread basé sur le principe des singletons
+pagePerso_projet_harcmut_desc = Une classe de synchronisation de données avec cache entre threads en rust
+pagePerso_projet_singletonthread_desc = Une classe de gestion de thread basée sur le principe des singletons
 pagePerso_projet_hwe_desc = Un autoloader PHP ainsi qu'un ensemble de classes utilitaires, pour la réalisation de mon ancien site
-pagePerso_projet_orgeco_desc = site d'une association de la défense des consommateurs, Celle-ci à fermer en 2023
-pagePerso_projet_vidphpconverter_desc = Une classe PHP pour l'utilisation de FFmpeg pour obtenir les informations, convertir et "streamer" une video (ou de l'audio)
+pagePerso_projet_orgeco_desc = site d'une association de la défense des consommateurs, Celle-ci à fermé en 2023
+pagePerso_projet_vidphpconverter_desc = Une classe PHP pour l'utilisation de FFmpeg pour obtenir les informations, convertir et "streamer" une vidéo (ou de l'audio)
 pagePerso_projet_casebrique_desc = Un casse brique en HTML 5 et javascript
 pagePerso_projet_wowmystats_desc = Système de suivis d'évolution de personnage sur WOW
 pagePerso_all_link = Liens du projet :
@@ -95,7 +97,7 @@ pagePersoHwe_desc2 = La structure du projet par défaut (configurable dans le ph
    <li>phpEntry.php : le fichier d'entrée</li>
    </ul></li>
  </ul>
-pagePersoHwe_desc3 = <b>Le fichier d'entrée</b> est le coeur du système, tout point d'entrée réel (commande console, vhost apache|nginx, etc) connait ainsi tout du projet (chemin root, configuration, etc)<br/>
+pagePersoHwe_desc3 = <b>Le fichier d'entrée</b> est le coeur du système, tcout point d'entrée réel (commande console, vhost apache|nginx, etc) connait ainsi tout du projet (chemin root, configuration, etc)<br/>
  J'utilisais aussi un système de librairie externe agnostique, permettant d'en utiliser plusieurs à la fois (Exemple : Composer, npm, mais aussi un personnel "Hloader").<br/>
  <br/>
  Avant Hwe, j'utilisais un autre projet fait maison <b>"Hcms"</b>, qui n'est plus du tout d'actualité aujourd'hui.
@@ -115,90 +117,96 @@ pagePersoWowMyStats_desc = Mini-site de statistique sur des personnage de world 
  Le système parsait le xml de l'armory online de WOW pour recupèrer les infos d'un personnage, puis le faisait regulièrement pour faire des statistiques d'évolution.<br/>
  Il permettais aussi de générer des images pour mettre dans les signatures de forums.<br/>
  <br/>
- Mais entre l'évolution de l'armory de wow et mon désintéré du jeu, ce système ne fonctionne plus.
+ Mais entre l'évolution de l'armory de wow et mon désintérêt du jeu, ce système ne fonctionne plus.
  
-pagePersoCV_desc = <h2>Experience professionnelles :</h2>
+pagePersoCV_desc = <h2 style="margin-left: -1em;margin-right: -1em;">Expériences professionnelles :</h2>
  <h3>Développeur fullstack <span>Chez <a class="externe" href="https://www.thess-corp.fr/" rel="noopener noreferrer nofollow" target="_blank">Thess-corp</a> depuis 07/2024</span></h3>
  <ul>
- 	<li><b>Développement, suivis et maintien d'un logiciel de suivis de patient avec appareil physique</b>
+ 	<li><b>Développement expert FULLSTACK, suivi et maintien d'un logiciel de suivi de santé patient avec appareil physique</b>
  		<ul>
- 			<li>Back-end JAVA sur spring boot</li>
- 			<li>Front-end Typescript sur react</li>
- 			<li>Micro-service via kubernetes / Helm</li>
- 			<li>Développement selon SCRUM et certification ISO 62304</li>
+ 			<li>Back-end <b>JAVA</b> (8, 21) sur <b>Spring Boot</b> avec <b>Maven</b></li>
+ 			<li>Front-end <b>TypeScript</b> sur <b>React</b></li>
+ 			<li>Orchestration de conteneurs via <b>Kubernetes / Helm</b> (micro-services / base de données)</li>
+ 			<li>Déploiement via <b>GitLab/CI</b></li>
+ 			<li>Développement selon <b>SCRUM</b>, les certifications ISO <b>62304/13485</b> et ISO <b>14971</b></li>
+ 			<li><b>JIRA</b> pour l'organisation des tâches</li>
+ 			<li>Reprise et révision de code ancien (Java 8), réorganisation de données en BDD <b>PostgreSQL</b></li>
+ 			<li>Utilisation de <b>Kafka</b> pour le transfert de données sensibles</li>
+ 			<li>Lecture/écriture de fichiers <b>HPRIM</b> et <b>HL7</b> pour les données de santé patient</li>
+ 			<li>Révision de la configuration de <b>Keycloak</b> utilisé pour la gestion des utilisateurs</li>
  		</ul>
  	</li>
  </ul>
- <h3>Concepteur Développeur <span>Chez <a class="externe" href="https://www.hyultis.fr/" rel="noopener noreferrer nofollow" target="_blank">Hyultis</a> depuis 01/2023</span></h3>
+ <h3>Développeur expert <span>Chez <a class="externe" href="https://www.hyultis.fr/" rel="noopener noreferrer nofollow" target="_blank">Hyultis</a> depuis 01/2023</span></h3>
  <ul>
  	<li><b>Développement du jeu vidéo <a class="externe" href="https://www.hyultis.fr/#heatchain" rel="noopener noreferrer nofollow" target="_blank">Heatchain</a></b>
  	<ul>
- 		<li>Apprentissage du langage <a class="externe" href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">RUST</a></li>
- 		<li>Développement d'un moteur de jeux-vidéo complet multi-threading</li>
+ 		<li>Apprentissage du langage <a class="externe" href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">Rust</a></li>
+ 		<li>Développement d'un moteur de jeu vidéo complet multi-threadé</li>
  		<ul>
- 			<li>Système de rendu graphique (api Vulkan) avec plusieurs passe de rendu et résolution dynamique adaptatif</li>
- 			<li>Système de rendu 2D et 3D avec shaders glsl</li>
- 			<li>Système de texture et de font (texte)</li>
- 			<li>Système d'animation</li>
- 			<li>Système d'évènement</li>
- 			<li>Système audio (basé sur rodio)</li>
- 			<li>Plateforme de compilation : windows, linux, android</li>
+ 			<li>Système de rendu graphique (API Vulkan) avec plusieurs passes de rendu et résolution dynamique adaptative</li>
+ 			<li>Systèmes de rendu 2D et 3D avec shaders GLSL</li>
+ 			<li>Système de textures et de polices (texte)</li>
+ 			<li>Système d’animation</li>
+ 			<li>Système d’événements</li>
+ 			<li>Système audio (basé sur Rodio)</li>
+ 			<li>Plateformes de compilation : Windows, Linux, Android</li>
  			<li>Chiffrement AES pour les scores</li>
- 			<li>Steam uniquement : intégration steamworks</li>
- 			<li>Android uniquement : intégration admob et services google</li>
+ 			<li>Steam uniquement : intégration Steamworks</li>
+ 			<li>Android uniquement : intégration AdMob et services Google</li>
  		</ul>
- 		<li>l'entièreté du jeu vidéo Heatchain (logique, gameplay, graphique, DA, evènement, etc) - En dehors de certain asset graphique et audio</li>
- 		<li>Compilation, Packaging et mise à disposition des plateformes : Steam, Itch.io, Play store</li>
+ 		<li>L'entièreté du jeu vidéo Heatchain (logique, gameplay, graphismes, DA, événements, etc.) — en dehors de certains assets graphiques et audio</li>
+ 		<li>Compilation, packaging et mise à disposition sur les plateformes : Steam, Itch.io, Play Store</li>
  		<li>Marketing</li>
  	</ul>
  </ul>
- 
- <h3>Concepteur Développeur / Chez <a class="externe" href="https://www.adec-sas.com/" rel="noopener noreferrer nofollow" target="_blank">SAS-ADEC</a> du 06/2012 au 08/2022</span></h3>
+
+ <h3>Développeur senior FULLSTACK / Chez <a class="externe" href="https://www.adec-sas.com/" rel="noopener noreferrer nofollow" target="_blank">SAS-ADEC</a> du 06/2012 au 08/2022</span></h3>
  <ul>
- 	<li><b>Développement dans le service EDI</b><ul>
- 		<li>Développement sur le logiciel <a class="externe" href="https://www.axway.com/" rel="noopener noreferrer nofollow" target="_blank">AXWAY</a> : b2bi, mapping services, DML, BMC, JAVA</li>
- 		<li>Ensemble de scripts de traitement en PHP spécifique à chaque partenaire.(~70 scripts différents)</li>
- 		<li>Environnement de traces/debug des scripts développé sur mesure.</li>
- 		<li>Système de recherche par metadata et de suivi complet des fichiers reçu/transmis et toutes leurs étapes d’évolutions via une api et une interface web. (+15 000 flux et +250 000 appel api par jour)</li>
- 		<li>Système d’extraction de fichier en erreur et de traductions automatiques pour envoi direct aux clients.</li>
+ 	<li><b>Développement FULLSTACK dans le service EDI</b><ul>
+ 		<li>Développement sur le logiciel <a class="externe" href="https://www.axway.com/" rel="noopener noreferrer nofollow" target="_blank">AXWAY</a> : B2Bi, mapping services, DML, BMC, JAVA</li>
+ 		<li>Ensemble de scripts de traitement en PHP spécifiques à chaque partenaire (~70 scripts différents)</li>
+ 		<li>Environnement de traces/debug des scripts développé sur mesure</li>
+ 		<li>Système de recherche par métadonnées et de suivi complet des fichiers reçus/transmis et de toutes leurs étapes d’évolution via une API et une interface web (+15 000 flux et +250 000 appels API par jour)</li>
+ 		<li>Système d’extraction de fichiers en erreur et de traductions automatiques pour envoi direct aux clients</li>
  	</ul></li>
- 	<li><b>Reprise de projets existant</b> en PHP (jusqu'à PHP 5.1), stabilisation, évolution, révision complète et/ou progressive selon les besoins.</li>
- 	<li><b>Gestion de service interne</b> à l'entreprise : Gitlab / Confluence / Matrix</li>
- 	<li>Avant 2016 : Conseils techniques et développement PHP dans une équipe de 2 personnes sur le même projet de TIE.</li>
+ 	<li><b>Reprise de projets existants</b> en PHP (jusqu'à PHP 5.1), stabilisation, évolution, révision complète et/ou progressive selon les besoins</li>
+ 	<li><b>Gestion de services internes</b> à l'entreprise : GitLab / Confluence / Matrix</li>
+ 	<li>Avant 2016 : Conseils techniques et développement PHP dans une équipe de 2 personnes sur le même projet TIE</li>
  </ul>
- 
+
  <h3>Développeur informatique <span style="font-style: italic">Chez <a class="externe" href="https://tiekinetix.com/fr" rel="noopener noreferrer nofollow" target="_blank">TIE KINETIX</a> du 11/2010 au 06/2012</span></h3>
  <ul>
- 	<li>Responsable d'un projet client ADEC conséquent (100 études d'huissiers abonnées à l'application, jusqu'à 4 développeurs).</li>
- 	<li>Analyses et estimations des délais de développement des projets confiés à l'équipe.</li>
- 	<li>Conseils techniques auprès du client ADEC.</li>
+ 	<li>Responsable d'un projet client ADEC conséquent (100 études d'huissiers abonnées à l'application, jusqu'à 4 développeurs)</li>
+ 	<li>Analyses et estimations des délais de développement des projets confiés à l'équipe</li>
+ 	<li>Conseils techniques auprès du client ADEC</li>
  </ul>
- 
+
  <h3>Compétences et qualifications :</h3>
- 
+
  <ul>
-    <li><b>Langage avec expertise :</b> Rust, JAVA, PHP</li>
-    <li><b>Langage maitrisé :</b> Web (javascript,Html,CSS), SQL(mysql,mariadb,pgsql)</li>
-    <li><b>Langage connue :</b> Dlang, C++</li>
-    <li><b>Paradigme de langages:</b> POO, Standards, Design pattern, chiffrements, REST, <i>etc</i></li>
-    <li><b>Paradigme personnel:</b> Apprentissage continue, Autonomie complète, Adaptabilité, Initiative d'amélioration</li>
-    <li><b>DEV ops :</b> Docker, Helm, Caddy, minikube, Github, Gitlab, linux, Bash/Sh</li>
- 	<li><b>IDE :</b> intellij IDEA, netbeans</li>
- 	<li><b>Administration de serveur linux :</b> Ubuntu/debian, iptable, ssh, apache, mysql, pgsql, gitlab, confluence, matrix/element, déploiement auto, <i>etc</i></li>
+    <li><b>Langages avec expertise :</b> Rust, JAVA, PHP</li>
+    <li><b>Langages maîtrisés :</b> Web (JavaScript, HTML, CSS), SQL (MySQL, MariaDB, PostgreSQL)</li>
+    <li><b>Langages connus :</b> Dlang, C++</li>
+    <li><b>Paradigmes de langages :</b> POO, standards, design patterns, chiffrements, REST, <i>etc.</i></li>
+    <li><b>Paradigmes personnels :</b> Apprentissage continu, autonomie complète, adaptabilité, initiative d'amélioration</li>
+    <li><b>DevOps :</b> Docker, Helm, Caddy, Minikube, GitHub, GitLab, Linux, Bash/Sh</li>
+ 	<li><b>IDE :</b> IntelliJ IDEA, NetBeans</li>
+ 	<li><b>Administration de serveurs Linux :</b> Ubuntu/Debian, iptables, SSH, Apache, MySQL, PostgreSQL, GitLab, Confluence, Matrix/Element, déploiement automatisé, <i>etc.</i></li>
  </ul>
- 
+
  <h3> Diplômes :</h3>
  <ul>
- 	<li>B.T.S Informatique de Gestion obtenu en juin 2010 au lycée de la C.C.I (Chambre de Commerce) de NÎMES.</li>
- 	<li>B.A.C (S.T.G.) obtenu en juin 2008 au Lycée Ernest Hemingway NÎMES.</li>
+ 	<li>B.T.S Informatique de Gestion obtenu en juin 2010 au lycée de la C.C.I (Chambre de Commerce) de Nîmes</li>
+ 	<li>B.A.C (S.T.G.) obtenu en juin 2008 au Lycée Ernest Hemingway Nîmes</li>
  </ul>
- 
- <h3> Stage (durant ma scolarité) :</h3>
- 
+
+ <h3> Stages (durant ma scolarité) :</h3>
+
  <ul>
- 	<li>GROUPE RDI (8 semaines 2010) SSII, stage dans la section développement microsoft.</li>
- 	<li>HABITAT du GARD (6 SEMAINES 2009) Société de logements sociaux (service Informatique).</li>
+ 	<li>GROUPE RDI (8 semaines 2010) SSII, stage dans la section développement Microsoft</li>
+ 	<li>HABITAT du GARD (6 semaines 2009) Société de logements sociaux (service informatique)</li>
  </ul>
- 
- <h3> Loisir :</h3>
+
+ <h3> Loisirs :</h3>
  Programmation, jeux, lecture, actualités/technologies en général, musique.

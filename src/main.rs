@@ -6,7 +6,6 @@ use axum::extract::Request;
 use axum::middleware;
 use axum::middleware::Next;
 use axum::response::Response;
-use Htrace::HTrace;
 use http::header::*;
 
 mod api;
@@ -22,9 +21,14 @@ async fn main() {
     use leptos_axum::{generate_route_list, LeptosRoutes};
 	use Hconfig::HConfigManager::HConfigManager;
 	use hyultisfr::entry::{shell, App};
-	use Htrace::CommandLine::{CommandLine, CommandLineConfig};
-	use Htrace::HTracer::HTracer;
-	use Htrace::Type::Type;
+	use Htrace::modules::command_line::CommandLine;
+	use Htrace::modules::command_line_config::CommandLineConfig;
+	use Htrace::modules::file::File;
+	use Htrace::modules::file_config::FileConfig;
+	use Htrace::htracer::HTracer;
+	use Htrace::components::level::Level;
+	use Htrace::components::context::Context;
+	use Htrace::HTrace;
 
 	let mut conf = get_configuration(None).unwrap();
 
@@ -32,22 +36,23 @@ async fn main() {
 	let _ = fs::create_dir("./dynamic");
 	let _ = fs::remove_dir_all("./dynamic/traces");
 
-	HConfigManager::singleton().setConfPath("./config");
-	if(conf.leptos_options.env==Env::PROD)
-	{
-		HTracer::minlvl_default(Type::NOTICE);
-	}
-	else
-	{
-		HTracer::minlvl_default(Type::DEBUG);
-	}
-	HTracer::appendModule("cli", CommandLine::new(CommandLineConfig::default())).unwrap();
-	HTracer::appendModule("file", Htrace::File::File::new(Htrace::File::FileConfig {
+	HConfigManager::singleton().confPath_set("./config");
+
+	let mut global_context = Context::default();
+	global_context.module_add("cmd",CommandLine::new(CommandLineConfig::default()));
+	global_context.module_add("file", File::new(FileConfig{
 		path: "./dynamic/traces".to_string(),
 		bySrc: true,
 		byThreadId: false,
-		..Htrace::File::FileConfig::default()
-	})).unwrap();
+		..Default::default()
+
+	}));
+	global_context.level_setMin(Some(Level::DEBUG));
+	if(conf.leptos_options.env==Env::PROD)
+	{
+		global_context.level_setMin(Some(Level::NOTICE));
+	}
+	HTracer::globalContext_set(global_context);
 
 	//conf.leptos_options.site_addr = SocketAddr::new(IpAddr::V6(Ipv6Addr::UNSPECIFIED), 3000);
     let addr = conf.leptos_options.site_addr;
@@ -60,7 +65,7 @@ async fn main() {
 			conf.leptos_options.env = Env::PROD
 		}
 	}
-	HTrace!((Type::DEBUG) "leptos option env : {:?}",conf.leptos_options.env);
+	HTrace!((Level::DEBUG) "leptos option env : {:?}",conf.leptos_options.env);
 
     let leptos_options = conf.leptos_options.clone();
 
@@ -81,10 +86,13 @@ async fn main() {
 	axum::serve(listener, app.into_make_service()).await.unwrap();
 }
 
+#[cfg(feature = "ssr")]
 async fn tracing_request(
 	request: Request,
 	next: Next,
 ) -> Response {
+	use Htrace::HTrace;
+
 	let method = request.method().to_string();
 	let uri = request.uri().to_string();
 

@@ -13,6 +13,7 @@ page404_title = Page not found
 page404_content = Sorry, this page cannot be found. you can go back to { $children }.
 
 #page Accueil ------------------------------------------
+pageAccueil_title = Home
 pageAccueil_desc = Welcome to <b>Hyultis</b>' website, I create video games.
 pageAccueil_goperso = Want to know more about me ? Click here:
 
@@ -20,15 +21,15 @@ pageAccueil_goperso = Want to know more about me ? Click here:
 pageGameHeatchain_desc = <br/><br/>
  <b>Heatchain</b> is a fast and intense arcade game, where concentration and reactivity are essential.<br/>
  <br/>
- <img src="/img/heatchain/rune1.png"/>
+ <img src="/img/heatchain/rune1.png" style="margin-left: 47%;"/>
  <br/>
  The goal is to find the next glyph among those on the board as quickly as possible.<br/>
  <br/>
- <img src="/img/heatchain/bonus.png"/>
+ <img src="/img/heatchain/bonus.png" style="margin-left: 47%;"/>
  <br/>
  Chain the correct glyphs, collect bonuses, and form the longest possible chain to reach the maximum score!<br/>
  <br/>
- <img src="/img/heatchain/rune2.png"/>
+ <img src="/img/heatchain/rune2.png" style="margin-left: 47%;"/>
  <br/>
  With its short games, <b>Heatchain</b> offers a thrilling arcade experience, where every second counts to maximize your score and achieve the perfect chain.<br/>
  <br/>
@@ -39,7 +40,8 @@ pageGameHeatchain_link = <h3>Discover the game on :</h3>
 pagePerso_title = About me
 pagePerso_desc_line1 = My name is <b>Hyultis</b>, I am { $children } years old and I have been passionate about programming since I was a child.
 pagePerso_desc_line2 = You can see my { $children }
-pagePerso_desc_line3 = I continue to learn, understand and experiment with new solutions, languages, paradigms<br/><br/>
+pagePerso_desc_line3 = I continue to learn, understand and experiment with new solutions, languages, paradigms.<br/><br/>
+ <img src="img/cuddlyferris.svg" style="width:2.5em;"/><br/>
  The most recent one is the <a class="externe" href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">Rust</a> language which I find pleasant, stable and full of good ideas.
 pagePerso_desc_projetok = Active projects :
 pagePerso_desc_projetko = Abandoned projects :

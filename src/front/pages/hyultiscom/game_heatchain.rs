@@ -13,7 +13,7 @@ pub fn GameHeatchain() -> impl IntoView {
 
 		<article id="heatchain">
 
-			<div style="text-align:right">
+			<div style="text-align:center">
 				<Translate key="pageGameHeatchain_desc"/>
 			</div>
 			<div style="text-align:left">
