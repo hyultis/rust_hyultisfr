@@ -51,6 +51,7 @@ pagePerso_projet_htrace_desc = Une classe de trace en rust
 pagePerso_projet_hconfig_desc = Une classe de configuration en rust
 pagePerso_projet_harcmut_desc = Une classe de synchronisation de données avec cache entre threads en rust
 pagePerso_projet_singletonthread_desc = Une classe de gestion de thread basée sur le principe des singletons
+pagePerso_projet_webhome_desc = Un site qui sert de page web d'accueil.
 pagePerso_projet_hwe_desc = Un autoloader PHP ainsi qu'un ensemble de classes utilitaires, pour la réalisation de mon ancien site
 pagePerso_projet_orgeco_desc = site d'une association de la défense des consommateurs, Celle-ci à fermé en 2023
 pagePerso_projet_vidphpconverter_desc = Une classe PHP pour l'utilisation de FFmpeg pour obtenir les informations, convertir et "streamer" une vidéo (ou de l'audio)
@@ -101,6 +102,8 @@ pagePersoHwe_desc3 = <b>Le fichier d'entrée</b> est le coeur du système, tcout
  J'utilisais aussi un système de librairie externe agnostique, permettant d'en utiliser plusieurs à la fois (Exemple : Composer, npm, mais aussi un personnel "Hloader").<br/>
  <br/>
  Avant Hwe, j'utilisais un autre projet fait maison <b>"Hcms"</b>, qui n'est plus du tout d'actualité aujourd'hui.
+
+pagePersoWebHome_desc = site qui sert de page web d'accueil. équivalent de <a class="externe" href="https://wikipedia.org/wiki/IGoogle" rel="noopener noreferrer nofollow" target="_blank">iGoogle</a>.
 
 pagePersoCasseBrique_desc = Casse brique réaliser en HTML5 est née suite a la volonté de tester les nouveautés inclues dans le HTML5, notamment la balise &lt;canvas&gt;.
 pagePersoCasseBrique_title = Casse brique

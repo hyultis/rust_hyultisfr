@@ -51,6 +51,7 @@ pagePerso_projet_htrace_desc = A trace class in rust
 pagePerso_projet_hconfig_desc = A configuration class in rust
 pagePerso_projet_harcmut_desc = A data synchronization class with inter-thread caching in rust
 pagePerso_projet_singletonthread_desc = A thread management class based on the singleton principle
+pagePerso_projet_webhome_desc = A website that serves as a homepage.
 pagePerso_projet_hwe_desc = A PHP autoloader and a set of utility classes, for the creation of my old site
 pagePerso_projet_orgeco_desc = website of a consumer protection association, which will close in 2023
 pagePerso_projet_vidphpconverter_desc = A PHP class for using FFmpeg to get information, convert and "stream" a video (or audio)
@@ -101,6 +102,8 @@ pagePersoHwe_desc3 = <b>The entry file</b> is the heart of the system, any real 
  I also used an agnostic external library system, allowing to use several at once (Example: Composer, npm, but also a personal "Hloader").<br/>
  <br/>
  Before Hwe, I used a another homemade project <b>"Hcms"</b>, which is no longer relevant today.
+
+pagePersoWebHome_desc = site that serves as a homepage web page. equivalent of <a class="externe" href="https://wikipedia.org/wiki/IGoogle" rel="noopener noreferrer nofollow" target="_blank">iGoogle</a>.
 
 pagePersoCasseBrique_desc = Brick Breaker made in HTML5 was born following the desire to test the new features included in HTML5, in particular the &lt;canvas&gt; tag.
 pagePersoCasseBrique_title = Brick Breaker

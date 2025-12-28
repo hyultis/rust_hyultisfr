@@ -1,11 +1,12 @@
-use leptos::{component, view, IntoView};
+use leptos::prelude::RenderHtml;
+use leptos::{island, view, IntoView};
 use leptos::prelude::ElementChild;
 use leptos::prelude::StyleAttribute;
 use leptos::prelude::GlobalAttributes;
 use crate::front::utils::translate::Translate;
 
 /// Renders the home page of your application.
-#[component]
+#[island]
 pub fn GameHeatchain() -> impl IntoView {
 
 	view! {

@@ -1,11 +1,12 @@
-use leptos::{component, view, IntoView};
+use leptos::prelude::RenderHtml;
+use leptos::{island, view, IntoView};
 use leptos::prelude::{GlobalAttributes};
 use leptos_router::components::A;
 use leptos::prelude::ElementChild;
 use crate::front::utils::translate::Translate;
 use leptos::prelude::StyleAttribute;
 
-#[component]
+#[island]
 pub fn Accueil() -> impl IntoView {
 	view! {
 		<h2><Translate key="pageAccueil_title"/></h2>

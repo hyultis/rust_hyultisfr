@@ -1,9 +1,10 @@
-use leptos::{component, view, IntoView};
+use leptos::prelude::RenderHtml;
+use leptos::{island, view, IntoView};
 use leptos::prelude::{ElementChild};
 use leptos_router::components::A;
 use crate::front::utils::translate::Translate;
 
-#[component]
+#[island]
 pub fn PersoHtrace() -> impl IntoView {
 
 	view! {

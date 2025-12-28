@@ -1,15 +1,20 @@
 use std::collections::HashMap;
-use std::sync::{Arc, OnceLock, RwLock};
+use std::sync::{Arc, OnceLock};
+use async_lock::{RwLock, RwLockWriteGuard};
 use fluent::bundle::FluentBundle;
 use fluent::{FluentArgs, FluentResource};
 use intl_memoizer::concurrent::IntlLangMemoizer;
 use leptos::logging::log;
+use leptos::prelude::{expect_context, Get, Resource};
+use reactive_stores::Store;
 use crate::api::translateBooks::API_translate_getBook;
+use crate::front::utils::usersData::{UserData, UserDataStoreFields};
+use crate::HWebTrace;
 
 struct BookHolder
 {
 	content: FluentBundle<FluentResource, IntlLangMemoizer>,
-	timstamp: u64
+	timestamp: u64
 }
 
 pub struct FluentManager {
@@ -24,27 +29,42 @@ impl FluentManager {
 		return SINGLETON.get_or_init(|| FluentManager::new());
 	}
 
-	pub async fn translate(&self, lang: impl Into<String>, key: impl Into<String>, params: Arc<HashMap<String,String>>) -> String
+	/// Same as translate() without the params
+	pub async fn translateParamsLess(&self, lang: impl ToString, key: impl ToString) -> String
 	{
-		let lang = lang.into();
-		let key = key.into();
-		if(!self._resources.read().unwrap().contains_key(&lang))
+		return self.translate(lang,key,Arc::new(HashMap::new())).await;
+	}
+
+	/// Translates a given key into a string based on the specified language using Fluent resources.
+	///
+	/// # Parameters
+	/// - `lang`: A type that can be converted into a `String`, representing the target language code (e.g., "en", "fr").
+	/// - `key`: A type that can be converted into a `String`, representing the message identifier or key to be translated.
+	/// - `params`: An `Arc<HashMap<String, String>>` containing key-value pairs for dynamic parameter substitution in the translated message.
+	pub async fn translate(&self, lang: impl ToString, key: impl ToString, params: Arc<HashMap<String,String>>) -> String
+	{
+		let lang = lang.to_string();
+		let key = key.to_string();
+		let mut lock = self._resources.write().await;
+		if(!lock.contains_key(&lang))
 		{
 			// TODO add a get into timestamp
-			self.addResource(&lang,0).await;
+			if let Some(apiResult) = Self::addResource(&lang,0).await
+			{
+				self.addLocalResource(&lang, &mut lock,apiResult);
+			}
 		}
-
-		let bindingMap = self._resources.read().unwrap();
-		let Some(bundle) = bindingMap.get(&lang) else {
-			log!("missing book");
+		let lock = RwLockWriteGuard::downgrade(lock);
+		let Some(bundle) = lock.get(&lang) else {
+			HWebTrace!("missing book {}",lang);
 			return key;
 		};
 		let Some(msg) = bundle.content.get_message(key.as_str()) else {
-			log!("missing message for key {}",key);
+			HWebTrace!("missing message for key {}",key);
 			return key;
 		};
 		let Some(pattern) = msg.value() else {
-			log!("missing pattern for key {}",key);
+			HWebTrace!("missing pattern for key {}",key);
 			return key;
 		};
 		let mut errors = vec![];
@@ -58,10 +78,38 @@ impl FluentManager {
 
 		if(!errors.is_empty())
 		{
-			log!("Error while formatting fluent pattern: {:?}",errors);
+			HWebTrace!("Error while formatting fluent pattern: {:?}",errors);
 		}
 
 		return result.to_string();
+	}
+
+	/// Creates a `Resource<String>` which provides translations for a given string based on the user's language preference.
+	///
+	/// This function takes a name of a string (such as a key for a translation) and returns a
+	/// `Resource` that resolves the current language of the user and provides the translated string.
+	///
+	/// # Parameters
+	///
+	/// - `name`: A value that implements `Into<String>`. Represents the key or identifier for the
+	///   string to be translated.
+	pub fn getAsResource(name: impl Fn() -> String + Send + Sync + Clone + 'static, params: HashMap<String,String>) -> Resource<String>
+	{
+		let params = Arc::new(params);
+		return Resource::new(
+			move || {
+				return expect_context::<Store<UserData>>().lang().get();
+			},
+			move |lang| {
+				FluentManager::singleton().translate(lang, name.clone()(), params.clone())
+			}
+		);
+	}
+
+	pub fn getAsResourceParamsLess(name: impl Into<String>) -> Resource<String>
+	{
+		let name = name.into();
+		Self::getAsResource(move || name.clone(),HashMap::new())
 	}
 
 	//////// PRIVATE
@@ -72,37 +120,37 @@ impl FluentManager {
 		}
 	}
 
-	async fn addResource(&self, lang: &String, timestamp: u64)
+	async fn addResource(lang: &String, timestamp: u64) -> Option<(String,u64)>
 	{
-
-		println!("addResource seek book");
-		let (content,newtime) = match API_translate_getBook(lang.clone(), timestamp).await
+		return match API_translate_getBook(lang.clone(), timestamp).await
 		{
 			Ok(data) => {
 				match data {
-					None => return,
-					Some(data) => data,
+					None => None,
+					Some(data) => Some(data),
 				}
 			}
 			Err(err) => {
 				log!("err when return API_translate_getBook {}",err);
-				return;
+				return None;
 			}
 		};
+	}
 
+	fn addLocalResource(&self, lang: impl AsRef<str> + ToString, lock: &mut RwLockWriteGuard<HashMap<String, BookHolder>>,(content,timestamp): (String,u64))
+	{
 		let Ok(flt_res) = FluentResource::try_new(content) else {
 			log!("Failed to parse an FTL string.");
 			return;
 		};
 
-		let mut bindingMap = self._resources.write().unwrap();
-		match bindingMap.get_mut(lang)
+		match lock.get_mut(lang.as_ref())
 		{
 			Some(bundle) => {
 				bundle.content.add_resource_overriding(flt_res);
 			},
 			None => {
-				let Ok(langid) = lang.parse() else {
+				let Ok(langid) = lang.to_string().parse() else {
 					log!("failed to parse lang ID");
 					return;
 				};
@@ -110,9 +158,9 @@ impl FluentManager {
 
 				bundle.add_resource_overriding(flt_res);
 
-				bindingMap.insert(lang.clone(), BookHolder {
+				lock.insert(lang.to_string(), BookHolder {
 					content: bundle,
-					timstamp: newtime,
+					timestamp,
 				});
 			}
 		}

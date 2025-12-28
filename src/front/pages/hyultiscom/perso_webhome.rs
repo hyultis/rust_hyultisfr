@@ -5,18 +5,18 @@ use leptos_router::components::A;
 use crate::front::utils::translate::Translate;
 
 #[island]
-pub fn PersoVidPHPConverter() -> impl IntoView {
+pub fn PersoWebhome() -> impl IntoView {
 
 	view! {
-		<h2><A href="/Perso"><Translate key="menu_me"/></A>" / VidPHPConverter"</h2>
+		<h2><A href="/Perso"><Translate key="menu_me"/></A>" / WebHome"</h2>
 
 		<article>
 			<div>
-				<Translate key="pagePersoVidPHPConverter_desc"/>
+				<Translate key="pagePersoWebHome_desc"/>
 			</div>
 			<div>
 				<Translate key="pagePerso_all_link"/>" "
-				<a href="https://github.com/hyultis/old_VidPHPConverter" rel="noopener noreferrer nofollow" target="_blank">Github</a>
+				<a href="https://github.com/hyultis/web-home" rel="noopener noreferrer nofollow" target="_blank">Github</a>
 			</div>
 		</article>
     }

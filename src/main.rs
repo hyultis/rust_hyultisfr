@@ -6,7 +6,11 @@ use axum::extract::Request;
 use axum::middleware;
 use axum::middleware::Next;
 use axum::response::Response;
+use Hconfig::IO::json::WrapperJson;
+use Hconfig::tinyjson::JsonValue;
+use Htrace::HTraceError;
 use http::header::*;
+use hyultisfr::entry::AppProps;
 
 mod api;
 
@@ -31,12 +35,35 @@ async fn main() {
 	use Htrace::HTrace;
 
 	let mut conf = get_configuration(None).unwrap();
+	// redefining ENV options from ENV if existing
+	if let Ok(env) = std::env::var("ENV")
+	{
+		if(env=="PROD")
+		{
+			conf.leptos_options.env = Env::PROD
+		}
+	}
 
 	let _ = fs::create_dir("./config");
 	let _ = fs::create_dir("./dynamic");
 	let _ = fs::remove_dir_all("./dynamic/traces");
 
 	HConfigManager::singleton().confPath_set("./config");
+	HConfigManager::singleton()
+		.create::<WrapperJson>("site")
+		.expect("bug from hconfig");
+
+	let mut trace_front_log = false;
+	if let Some(mut siteConfig) = HConfigManager::singleton().get("site")
+	{
+		let config = siteConfig.value_mut();
+		helper::preFillConfig(config,"trace_front_log",conf.leptos_options.env!=Env::PROD);
+		if let Some(JsonValue::Boolean(raw)) = config.value_get("trace_front_log")
+		{
+			trace_front_log = raw;
+		}
+		HTraceError!(config.file_save());
+	}
 
 	let mut global_context = Context::default();
 	global_context.module_add("cmd",CommandLine::new(CommandLineConfig::default()));
@@ -53,70 +80,90 @@ async fn main() {
 		global_context.level_setMin(Some(Level::NOTICE));
 	}
 	HTracer::globalContext_set(global_context);
+	HTrace!((Level::DEBUG) "leptos option env : {:?}",conf.leptos_options.env);
+	HTrace!((Level::DEBUG) "is IS_TRACE_FRONT_LOG ? : {:?}",trace_front_log);
 
 	//conf.leptos_options.site_addr = SocketAddr::new(IpAddr::V6(Ipv6Addr::UNSPECIFIED), 3000);
     let addr = conf.leptos_options.site_addr;
-
-	// redefining ENV options from ENV if existing
-	if let Ok(env) = std::env::var("ENV")
-	{
-		if(env=="PROD")
-		{
-			conf.leptos_options.env = Env::PROD
-		}
-	}
-	HTrace!((Level::DEBUG) "leptos option env : {:?}",conf.leptos_options.env);
-
     let leptos_options = conf.leptos_options.clone();
 
+	let leptos_options_inner_app = leptos_options.clone();
     let app = Router::new()
-        .leptos_routes(&leptos_options, generate_route_list(App), {
+        .leptos_routes(&leptos_options, generate_route_list(move || {
+	        let leptos_options = leptos_options_inner_app.clone();
+	        App(AppProps { traceFrontLog: trace_front_log})
+        }), {
             let leptos_options = leptos_options.clone();
-            move || shell(leptos_options.clone())
+            move || shell((leptos_options.clone(),trace_front_log))
         })
-        .fallback(leptos_axum::file_and_error_handler(shell))
-	    .layer(middleware::from_fn(tracing_request))
-	    .layer(middleware::from_fn(http_good_practice))
+	    .fallback(leptos_axum::file_and_error_handler(move |lo|shell((lo,trace_front_log))))
+	    .layer(middleware::from_fn(helper::tracing_request))
+	    .layer(middleware::from_fn(helper::http_good_practice))
         .with_state(leptos_options);
 
     // run our app with hyper
     // `axum::Server` is a re-export of `hyper::Server`
-    log!("listening on http://{}", &addr);
+    HTrace!("listening on http://{}", &addr);
 	let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
 	axum::serve(listener, app.into_make_service()).await.unwrap();
 }
 
 #[cfg(feature = "ssr")]
-async fn tracing_request(
-	request: Request,
-	next: Next,
-) -> Response {
-	use Htrace::HTrace;
+mod helper {
+	use axum::extract::Request;
+	use axum::middleware::Next;
+	use axum::response::Response;
+	use Hconfig::HConfig::HConfig;
+	use Hconfig::tinyjson::JsonValue;
+	use http::header::*;
 
-	let method = request.method().to_string();
-	let uri = request.uri().to_string();
+	pub fn preFillConfig(config: &mut HConfig,fieldName: impl Into<String>, data: impl Into<JsonValue>)
+	{
+		let fieldName = fieldName.into();
+		if match config.value_get(&fieldName) {
+			None => true,
+			Some(JsonValue::String(ref content)) if content.is_empty() => true,
+			Some(_) => false
+		} {
+			config.value_set(&fieldName,data);
+		}
+	}
 
-	let response = next.run(request).await;
+	pub(crate) async fn tracing_request(
+		request: Request,
+		next: Next,
+	) -> Response {
+		use Htrace::HTrace;
 
-	HTrace!("Request {} on {} : {}", method, uri, response.status());
-
-	response
-}
+		let method = request.method().to_string();
+		let uri = request.uri().to_string();
 
 
-async fn http_good_practice(
-	request: Request,
-	next: Next,
-) -> Response {
-	let mut response = next.run(request).await;
+		let response = next.run(request).await;
 
-	response.headers_mut().insert(X_FRAME_OPTIONS, HeaderValue::from_static("DENY"));
-	response.headers_mut().insert(CONTENT_SECURITY_POLICY, HeaderValue::from_static("frame-ancestors 'none'"));
-	response.headers_mut().insert(X_CONTENT_TYPE_OPTIONS, HeaderValue::from_static("nosniff"));
-	response.headers_mut().insert(STRICT_TRANSPORT_SECURITY, HeaderValue::from_static("max-age=63072000; includeSubDomains; preload"));
-	response.headers_mut().insert(REFERRER_POLICY, HeaderValue::from_static("no-referrer"));
+		if(!(uri.contains("API_translate_getBook") || uri.contains("API_Htrace_log")))
+		{
+			HTrace!("Request {} on {} : {}", method, uri, response.status());
+		}
 
-	response
+		response
+	}
+
+
+	pub(crate) async fn http_good_practice(
+		request: Request,
+		next: Next,
+	) -> Response {
+		let mut response = next.run(request).await;
+
+		response.headers_mut().insert(X_FRAME_OPTIONS, HeaderValue::from_static("DENY"));
+		response.headers_mut().insert(CONTENT_SECURITY_POLICY, HeaderValue::from_static("frame-ancestors 'none'"));
+		response.headers_mut().insert(X_CONTENT_TYPE_OPTIONS, HeaderValue::from_static("nosniff"));
+		response.headers_mut().insert(STRICT_TRANSPORT_SECURITY, HeaderValue::from_static("max-age=63072000; includeSubDomains; preload"));
+		response.headers_mut().insert(REFERRER_POLICY, HeaderValue::from_static("no-referrer"));
+
+		response
+	}
 }
 
 #[cfg(not(feature = "ssr"))]

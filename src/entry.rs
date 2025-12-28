@@ -1,3 +1,4 @@
+use std::sync::atomic::AtomicBool;
 use std::time::Duration;
 use crate::front::pages::hyultiscom::game_heatchain::GameHeatchain;
 use crate::front::pages::hyultiscom::accueil::Accueil;
@@ -10,6 +11,7 @@ use leptos_router::components::{Route, Router, Routes, A};
 use leptos_router::path;
 use leptos_use::use_locales;
 use reactive_stores::Store;
+use crate::api::IS_TRACE_FRONT_LOG;
 use crate::front::pages::hyultiscom::perso::Perso;
 use crate::front::pages::hyultiscom::perso_cassebrique::PersoCasseBrique;
 use crate::front::pages::hyultiscom::perso_cv::PersoCV;
@@ -21,11 +23,12 @@ use crate::front::pages::hyultiscom::perso_orgeco::PersoORGECO;
 use crate::front::pages::hyultiscom::perso_rustwebsite::PersoRustWebsite;
 use crate::front::pages::hyultiscom::perso_singletonthread::PersoSingletonThread;
 use crate::front::pages::hyultiscom::perso_vidphpconverter::PersoVidPHPConverter;
+use crate::front::pages::hyultiscom::perso_webhome::PersoWebhome;
 use crate::front::pages::hyultiscom::perso_wowmystats::PersoWowMyStats;
 use crate::front::utils::translate::{Translate, TranslateCurrentLang};
 use crate::front::utils::usersData::{UserData};
 
-pub fn shell(options: LeptosOptions) -> impl IntoView {
+pub fn shell((options,trace_front_log): (LeptosOptions, bool)) -> impl IntoView {
 	//	<meta http-equiv="Content-Security-Policy" content="default-src https: * 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' 'wasm-unsafe-eval'; script-src-elem *"/>
 	view! {
 		<!DOCTYPE html>
@@ -38,18 +41,18 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
 				<meta lang="en" name="description" content="Hyultis's website"/>
 				//<meta http-equiv="Content-Security-Policy" content="script-src https: 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'"/> // actuellement instable avec leptos ?
 				<AutoReload options=options.clone() />
-				<HydrationScripts options/>
+				<HydrationScripts options islands=true/>
 				<MetaTags/>
 			</head>
 			<body>
-				<App/>
+				<App traceFrontLog={trace_front_log}/>
 			</body>
 		</html>
 	}
 }
 
-#[component]
-pub fn App() -> impl IntoView {
+#[island]
+pub fn App(traceFrontLog: bool) -> impl IntoView {
 	// Provides context that manages stylesheets, titles, meta tags, etc.
 	provide_meta_context();
 
@@ -64,7 +67,13 @@ pub fn App() -> impl IntoView {
 
 	let mailto = RwSignal::new("mailto:honeypot@example.com".to_string());
 
-	Effect::new(move |_| {
+	let is_initialized = RwSignal::new(false);
+	Effect::new(move || {
+		if(is_initialized.get_untracked()) {
+			return;
+		}
+		is_initialized.set(true);
+		let _ = IS_TRACE_FRONT_LOG.set(AtomicBool::new(traceFrontLog));
 		let mail = format!("mailto:{}", email.get());
 		set_timeout(move || mailto.set(mail), Duration::from_secs(3));
 	});
@@ -132,6 +141,7 @@ pub fn App() -> impl IntoView {
 						<Route path=path!("/Perso/VidPHPConverter") view=PersoVidPHPConverter/>
 						<Route path=path!("/Perso/CasseBrique") view=PersoCasseBrique/>
 						<Route path=path!("/Perso/Wowmystats") view=PersoWowMyStats/>
+						<Route path=path!("/Perso/WebHome") view=PersoWebhome/>
 					</Routes>
 				</section>
 			</Router>

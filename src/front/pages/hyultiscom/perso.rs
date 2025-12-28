@@ -1,11 +1,12 @@
-use leptos::{component, view, IntoView};
+use leptos::prelude::RenderHtml;
+use leptos::{island, view, IntoView};
 use leptos::prelude::{ElementChild, StyleAttribute};
 use leptos_router::components::A;
 use time::OffsetDateTime;
 use crate::front::utils::translate::Translate;
 
 /// Renders the home page of your application.
-#[component]
+#[island]
 pub fn Perso() -> impl IntoView {
 
 	let now = OffsetDateTime::now_utc();
@@ -32,6 +33,7 @@ pub fn Perso() -> impl IntoView {
 		            <li><A href="Hconfig">Hconfig</A>" ":" "<Translate key="pagePerso_projet_hconfig_desc"/></li>
 		            <li><A href="HArcMut">HArcMut</A>" ":" "<Translate key="pagePerso_projet_harcmut_desc"/></li>
 		            <li><A href="SingletonThread">singletonThread</A>" ":" "<Translate key="pagePerso_projet_singletonthread_desc"/></li>
+		            <li><A href="WebHome">WebHome</A>" ":" "<Translate key="pagePerso_projet_webhome_desc"/></li>
 				</ul>
 			</div>
 			<div style="text-align: left">

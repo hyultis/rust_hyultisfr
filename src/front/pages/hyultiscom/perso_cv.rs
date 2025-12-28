@@ -1,4 +1,5 @@
-use leptos::{component, view, IntoView};
+use leptos::prelude::RenderHtml;
+use leptos::{island, view, IntoView};
 use leptos::prelude::{signal, ElementChild, GlobalAttributes, StyleAttribute};
 use leptos_obfuscate::ObfuscateEmail;
 use leptos_router::components::A;
@@ -6,7 +7,7 @@ use time::OffsetDateTime;
 use crate::front::utils::translate::Translate;
 
 /// Renders the home page of your application.
-#[component]
+#[island]
 pub fn PersoCV() -> impl IntoView {
 	let now = OffsetDateTime::now_utc();
 	let (email, _) = signal("hyultis@gmail.com".to_string());
