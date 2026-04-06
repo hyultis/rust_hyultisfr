@@ -17,9 +17,9 @@ pub fn PersoCV() -> impl IntoView {
 
 		<article id="cv">
 			<div style="text-align: left;">
-				M." " J<span style="color: #aaa">---</span>" " B<span style="color: #aaa">---</span><br/>
-				Age :" " {move || now.year() - 1989}" " ans<br/>
-				Courriel :" " <ObfuscateEmail email /><br/>
+				"M. D"<span style="color: #aaa">---</span>" B"<span style="color: #aaa">---</span><br/>
+				"Age : " {move || now.year() - 1989}" " ans<br/>
+				"Courriel : " <ObfuscateEmail email /><br/>
 
 				<Translate key="pagePersoCV_desc"/>
 			</div>
