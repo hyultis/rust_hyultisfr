@@ -1,3 +1,4 @@
+use crate::front::pages::hyultiscom::mentions_legal::MentionsLegal;
 use std::sync::atomic::AtomicBool;
 use std::time::Duration;
 use crate::front::pages::hyultiscom::game_heatchain::GameHeatchain;
@@ -64,7 +65,6 @@ pub fn App(traceFrontLog: bool) -> impl IntoView {
 
 	let userData = expect_context::<Store<UserData>>();
 	let (email, _) = signal("hyultis@gmail.com".to_string());
-
 	let mailto = RwSignal::new("mailto:honeypot@example.com".to_string());
 
 	let is_initialized = RwSignal::new(false);
@@ -142,6 +142,7 @@ pub fn App(traceFrontLog: bool) -> impl IntoView {
 						<Route path=path!("/Perso/CasseBrique") view=PersoCasseBrique/>
 						<Route path=path!("/Perso/Wowmystats") view=PersoWowMyStats/>
 						<Route path=path!("/Perso/WebHome") view=PersoWebhome/>
+						<Route path=path!("/MentionsLegal") view=MentionsLegal/>
 					</Routes>
 				</section>
 			</Router>
@@ -149,7 +150,8 @@ pub fn App(traceFrontLog: bool) -> impl IntoView {
 
 			<footer>
 				<Translate key="pageRoot_foot_design"/>" "<a class="none" href=move || mailto.get()>Hyultis</a><br/>
-				<span style="font-size: 0.5em"><Translate key="pageRoot_foot"/></span>
+				<span style="font-size: 0.5em"><Translate key="pageRoot_foot"/></span>" "
+				<span style="font-size: 0.5em"><A href="/MentionsLegal"><Translate key="mentionslegal_title"/></A></span>
 			</footer>
 		</div>
 	}

@@ -13,3 +13,4 @@ pub mod perso_cassebrique;
 pub mod perso_wowmystats;
 pub mod perso_hwe;
 pub mod perso_webhome;
+pub mod mentions_legal;
