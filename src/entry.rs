@@ -26,6 +26,7 @@ use crate::front::pages::hyultiscom::perso_singletonthread::PersoSingletonThread
 use crate::front::pages::hyultiscom::perso_vidphpconverter::PersoVidPHPConverter;
 use crate::front::pages::hyultiscom::perso_webhome::PersoWebhome;
 use crate::front::pages::hyultiscom::perso_wowmystats::PersoWowMyStats;
+use crate::front::utils::dataHide::DataHideMail;
 use crate::front::utils::translate::{Translate, TranslateCurrentLang};
 use crate::front::utils::usersData::{UserData};
 
@@ -149,7 +150,7 @@ pub fn App(traceFrontLog: bool) -> impl IntoView {
 
 
 			<footer>
-				<Translate key="pageRoot_foot_design"/>" "<a class="none" href=move || mailto.get()>Hyultis</a><br/>
+				<Translate key="pageRoot_foot_design"/>" "<DataHideMail mailTo="hyultis@gmail.com".to_string() text=Some("Hyultis".to_string())/><br/>
 				<span style="font-size: 0.5em"><Translate key="pageRoot_foot"/></span>" "
 				<span style="font-size: 0.5em"><A href="/MentionsLegal"><Translate key="mentionslegal_title"/></A></span>
 			</footer>

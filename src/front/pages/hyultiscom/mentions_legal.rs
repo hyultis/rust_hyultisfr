@@ -1,4 +1,4 @@
-use leptos::prelude::{ClassAttribute, RenderHtml, RwSignal, StyleAttribute};
+use leptos::prelude::{RenderHtml, StyleAttribute};
 use leptos::{island, view, IntoView};
 use leptos::prelude::{ElementChild};
 use crate::front::utils::dataHide::DataHideMail;
@@ -6,8 +6,6 @@ use crate::front::utils::translate::Translate;
 
 #[island]
 pub fn MentionsLegal() -> impl IntoView {
-
-	let mailto = RwSignal::new("mailto:honeypot@example.com".to_string());
 	view! {
 		<h2><Translate key="mentionslegal_title"/></h2>
 

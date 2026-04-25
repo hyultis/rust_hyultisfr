@@ -2,14 +2,9 @@
 #![allow(non_snake_case)]
 #![allow(dead_code)]
 
-use axum::extract::Request;
-use axum::middleware;
-use axum::middleware::Next;
-use axum::response::Response;
 use Hconfig::IO::json::WrapperJson;
 use Hconfig::tinyjson::JsonValue;
 use Htrace::HTraceError;
-use http::header::*;
 use hyultisfr::entry::AppProps;
 
 mod api;
@@ -20,7 +15,6 @@ mod api;
 async fn main() {
 	use std::fs;
 	use axum::Router;
-    use leptos::logging::log;
     use leptos::prelude::*;
     use leptos_axum::{generate_route_list, LeptosRoutes};
 	use Hconfig::HConfigManager::HConfigManager;
@@ -33,6 +27,7 @@ async fn main() {
 	use Htrace::components::level::Level;
 	use Htrace::components::context::Context;
 	use Htrace::HTrace;
+	use axum::middleware;
 
 	let mut conf = get_configuration(None).unwrap();
 	// redefining ENV options from ENV if existing
@@ -87,10 +82,10 @@ async fn main() {
     let addr = conf.leptos_options.site_addr;
     let leptos_options = conf.leptos_options.clone();
 
-	let leptos_options_inner_app = leptos_options.clone();
+	//let leptos_options_inner_app = leptos_options.clone();
     let app = Router::new()
         .leptos_routes(&leptos_options, generate_route_list(move || {
-	        let leptos_options = leptos_options_inner_app.clone();
+	        //let leptos_options = leptos_options_inner_app.clone();
 	        App(AppProps { traceFrontLog: trace_front_log})
         }), {
             let leptos_options = leptos_options.clone();
