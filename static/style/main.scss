@@ -192,3 +192,69 @@ li ul {
 #cv .titre span {
 	font-style: italic;
 }
+
+// ----- specific case
+
+.element_align_left {
+	text-align:left
+}
+
+.element_align_center {
+	text-align:center
+}
+
+.element_hide {
+	display: none;
+}
+
+.element_font_size_halved {
+	font-size: 0.5em
+}
+
+.element_bottom_margin {
+	margin-bottom: 3em
+}
+
+.element_heatchain_iframe_style {
+	margin:0;
+	display:block;
+	border:0;
+	width:100%;
+	height:315px
+}
+
+.element_heatchain_img {
+	margin-left: 47%;
+}
+
+.element_css_center {
+	margin: 0 auto;
+	text-align: left;
+}
+
+.element_perso_img_cv {
+	width:2.5em;
+	padding-left: 5px
+}
+.element_perso_img_firstbloc {
+	width:2.5em;
+}
+.element_perso_img_other {
+	width:1.5em;
+	display: inline-block;
+	margin-bottom: -5px;
+}
+
+.element_cv_color {
+	color: #aaa
+}
+
+.element_cv_titles {
+	margin-left: -1em;
+	margin-right: -1em;
+}
+
+.element_orgeco_img {
+	width: 100%;
+	border: 2px solid black
+}

@@ -199,8 +199,8 @@ pub fn App(traceFrontLog: bool) -> impl IntoView {
 
 			<footer>
 				<Translate key="pageRoot_foot_design"/>" "<DataHideMail mailTo="hyultis@gmail.com".to_string() text=Some("Hyultis".to_string())/><br/>
-				<span style="font-size: 0.5em"><Translate key="pageRoot_foot"/></span>" "
-				<span style="font-size: 0.5em"><A href="/MentionsLegal"><Translate key="mentionslegal_title"/></A></span>
+				<span class="element_font_size_halved"><Translate key="pageRoot_foot"/></span>" "
+				<span class="element_font_size_halved"><A href="/MentionsLegal"><Translate key="mentionslegal_title"/></A></span>
 			</footer>
 		</div>
 	}

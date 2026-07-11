@@ -16,7 +16,7 @@ pub fn PersoORGECO() -> impl IntoView {
 				<br/>
 				<Translate key="pagePersoORGECO30_desc"/><br/><br/>
 			</div>
-	        <img src="/img/orgeco30old.png" style="width: 100%; border: 2px solid black" alt="orgeco screen"/>
+	        <img src="/img/orgeco30old.png" class="element_orgeco_img" alt="orgeco screen"/>
 		</article>
     }
 }

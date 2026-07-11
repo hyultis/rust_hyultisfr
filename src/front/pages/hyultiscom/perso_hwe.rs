@@ -1,6 +1,6 @@
-use leptos::prelude::RenderHtml;
+use leptos::prelude::{ClassAttribute, RenderHtml};
 use leptos::{island, view, IntoView};
-use leptos::prelude::{ElementChild, StyleAttribute};
+use leptos::prelude::{ElementChild};
 use leptos_router::components::A;
 use crate::front::utils::translate::Translate;
 
@@ -12,7 +12,7 @@ pub fn PersoHwe() -> impl IntoView {
 
 		<article>
 			<Translate key="pagePersoHwe_desc1"/>
-			<div style="text-align: left">
+			<div class="element_align_left">
 				<Translate key="pagePersoHwe_desc2"/>
 			</div>
 			<Translate key="pagePersoHwe_desc3"/>

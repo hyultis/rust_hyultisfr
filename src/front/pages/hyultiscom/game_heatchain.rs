@@ -1,7 +1,6 @@
-use leptos::prelude::RenderHtml;
+use leptos::prelude::{ClassAttribute, RenderHtml};
 use leptos::{island, view, IntoView};
 use leptos::prelude::ElementChild;
-use leptos::prelude::StyleAttribute;
 use leptos::prelude::GlobalAttributes;
 use crate::front::utils::translate::Translate;
 
@@ -14,11 +13,11 @@ pub fn GameHeatchain() -> impl IntoView {
 
 		<article id="heatchain">
 
-			<div style="text-align:center">
+			<div class="element_align_center">
 				<Translate key="pageGameHeatchain_desc"/>
 			</div>
-			<div style="text-align:left">
-				<iframe style="margin:0;display:block;border:0;width:100%;height:315px"
+			<div class="element_align_left">
+				<iframe class="element_heatchain_iframe_style"
 			        src="https://www.youtube-nocookie.com/embed/SEbTryPeL8o?si=OOdKFJAOwNvLIlTW"
 			        title="YouTube video player"
 			        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

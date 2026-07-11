@@ -1,4 +1,4 @@
-use leptos::prelude::{RenderHtml, StyleAttribute};
+use leptos::prelude::{ClassAttribute, RenderHtml};
 use leptos::{island, view, IntoView};
 use leptos::prelude::{ElementChild};
 use crate::front::utils::dataHide::DataHideMail;
@@ -10,8 +10,8 @@ pub fn MentionsLegal() -> impl IntoView {
 		<h2><Translate key="mentionslegal_title"/></h2>
 
 		<article>
-			<div style="display: none;"></div>
-			<div style="margin: 0 auto;text-align: left;"><br/>
+			<div class="element_hide"></div>
+			<div class="element_css_center"><br/>
 				"Ce site est un site personnel de présentation de projets de développement et de jeux vidéo."<br/>
 				"Les ventes éventuelles de jeux sont réalisées exclusivement via des plateformes tierces, notamment Steam. Ce site ne propose pas de vente directe."
 				<br/><br/>

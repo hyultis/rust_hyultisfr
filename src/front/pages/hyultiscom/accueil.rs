@@ -1,17 +1,16 @@
-use leptos::prelude::RenderHtml;
+use leptos::prelude::{ClassAttribute, RenderHtml};
 use leptos::{island, view, IntoView};
 use leptos::prelude::{GlobalAttributes};
 use leptos_router::components::A;
 use leptos::prelude::ElementChild;
 use crate::front::utils::translate::Translate;
-use leptos::prelude::StyleAttribute;
 
 #[island]
 pub fn Accueil() -> impl IntoView {
 	view! {
 		<h2><Translate key="pageAccueil_title"/></h2>
 
-		<article style="margin-bottom: 3em">
+		<article class="element_bottom_margin">
 			<Translate key="pageAccueil_desc"/>
 		</article>
 

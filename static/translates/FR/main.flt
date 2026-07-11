@@ -21,15 +21,15 @@ pageAccueil_goperso = Si vous souhaitez en savoir plus sur moi, cliquez ici :
 pageGameHeatchain_desc = <br/><br/>
  <b>Heatchain</b> est un jeu d'arcade rapide et intense, où la concentration et la réactivité sont essentielles.<br/>
  <br/>
- <img src="/img/heatchain/rune1.png" style="margin-left: 47%;"/>
+ <img src="/img/heatchain/rune1.png" class="element_heatchain_img"/>
  <br/>
  Le but est de trouver le plus rapidement possible la prochaine glyphe parmi celles présentes sur le plateau.<br/>
  <br/>
- <img src="/img/heatchain/bonus.png" style="margin-left: 47%;"//>
+ <img src="/img/heatchain/bonus.png" class="element_heatchain_img"/>
  <br/>
  Enchaînez les glyphes corrects, collectez les bonus, et formez la plus longue chaîne possible pour atteindre le score maximum !<br/>
  <br/>
- <img src="/img/heatchain/rune2.png" style="margin-left: 47%;"//>
+ <img src="/img/heatchain/rune2.png" class="element_heatchain_img"/>
  <br/>
  Avec ses parties courtes, <b>Heatchain</b> offre une expérience arcade palpitante, où chaque seconde compte pour maximiser votre score et réaliser la chaîne parfaite.<br/>
  <br/>
@@ -41,7 +41,7 @@ pagePerso_title = A propos de moi
 pagePerso_desc_line1 = Je m'appelle <b>Hyultis</b>, j'ai { $children } ans et je suis passionné par la programmation depuis mon enfance.
 pagePerso_desc_line2 = Vous pouvez voir mon { $children }
 pagePerso_desc_line3 = Je continue d'apprendre, comprendre et d'expérimenter de nouvelles solutions, langages, paradigmes.<br/><br/>
- <img src="img/cuddlyferris.svg" style="width:2.5em;"/><br/>
+ <img src="img/cuddlyferris.svg" class="element_perso_img_firstbloc"/><br/>
  Le plus récent concerne le langage <a class="externe" href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">Rust</a> que je trouve agréable, stable, et remplis de bonnes idées
 pagePerso_desc_projetok = Projets en cours :
 pagePerso_desc_projetko = Projets abandonnés :
@@ -122,11 +122,11 @@ pagePersoWowMyStats_desc = Mini-site de statistique sur des personnage de world 
  <br/>
  Mais entre l'évolution de l'armory de wow et mon désintérêt du jeu, ce système ne fonctionne plus.
  
-pagePersoCV_desc = <h2 style="margin-left: -1em; margin-right: -1em;">Profil professionnel</h2>
+pagePersoCV_desc = <h2 class="element_cv_titles">Profil professionnel</h2>
  <p><b>Développeur full-stack senior avec plus de 15 ans d’expérience</b> dans la conception, la modernisation et l’exploitation d’applications métier.</p><br/>
  <p>J’interviens principalement sur des environnements <b>Java / Spring Boot</b>, <b>TypeScript / React</b> et des infrastructures conteneurisées avec <b>Kubernetes</b> et <b>Helm</b>. Mon parcours couvre également l’intégration de données, les systèmes EDI à fort volume, les applications de santé et le développement bas niveau en <b>Rust</b>.</p><br/>
  <p>Je suis particulièrement à l’aise sur les sujets qui demandent de comprendre un système existant, de reprendre du code historique, de fiabiliser son fonctionnement et de faire évoluer progressivement son architecture.</p>
- <h2 style="margin-left: -1em; margin-right: -1em;">Expériences professionnelles</h2>
+ <h2 class="element_cv_titles">Expériences professionnelles</h2>
  <h3>Développeur full-stack expert <span>chez <a class="externe" href="https://www.thess-corp.fr/" rel="noopener noreferrer nofollow" target="_blank">Thess Corporate</a> depuis 07/2024</span></h3>
  <p>Développement, évolution et maintien d’une plateforme de suivi de santé connectée à des dispositifs physiques.</p>
  <ul>
@@ -176,7 +176,7 @@ pagePersoCV_desc = <h2 style="margin-left: -1em; margin-right: -1em;">Profil pro
   <li>Coordination d’une équipe pouvant atteindre <b>quatre développeurs</b></li>
   <li>Analyse des besoins, estimation des développements et conseil technique auprès du client</li>
  </ul>
- <h2 style="margin-left: -1em; margin-right: -1em;">Compétences</h2>
+ <h2 class="element_cv_titles">Compétences</h2>
  <h3>Développement</h3>
  <p><b>Java 8/21</b>, Spring Boot, Maven, TypeScript, React, JavaScript, <b>Rust</b>, <b>PHP</b>, HTML, CSS.</p>
  <h3>Architecture et systèmes</h3>
@@ -187,7 +187,7 @@ pagePersoCV_desc = <h2 style="margin-left: -1em; margin-right: -1em;">Profil pro
  <p>Kubernetes, Helm, Docker, GitLab CI/CD, Linux, Keycloak, Bash.</p>
  <h3>Développement graphique</h3>
  <p>Vulkan, GLSL, rendu 2D/3D, gestion des ressources, résolution dynamique.</p>
- <h2 style="margin-left: -1em; margin-right: -1em;">Formation</h2>
+ <h2 class="element_cv_titles">Formation</h2>
  <ul>
   <li><b>BTS Informatique de gestion</b>, obtenu en 2010 au lycée de la Chambre de commerce et d’industrie de Nîmes</li>
   <li><b>Baccalauréat STG</b>, obtenu en 2008 au lycée Ernest Hemingway de Nîmes</li>
