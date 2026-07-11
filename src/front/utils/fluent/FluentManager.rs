@@ -5,7 +5,8 @@ use fluent::bundle::FluentBundle;
 use fluent::{FluentArgs, FluentResource};
 use intl_memoizer::concurrent::IntlLangMemoizer;
 use leptos::logging::log;
-use leptos::prelude::{Get, Resource};
+use leptos::prelude::{expect_context, Get, Resource};
+use reactive_stores::Store;
 use crate::api::translateBooks::API_translate_getBook;
 use crate::front::utils::users_data::UserData;
 use crate::HWebTrace;
@@ -97,8 +98,7 @@ impl FluentManager {
 		let params = Arc::new(params);
 		return Resource::new(
 			move || {
-				let (userData, _) = UserData::cookie_signalGet();
-				return userData.get().map(|userDataContent| userDataContent.lang_get()).unwrap_or("EN".to_string());
+				return expect_context::<Store<UserData>>().get().lang_get();
 			},
 			move |lang| {
 				FluentManager::singleton().translate(lang, name.clone()(), params.clone())

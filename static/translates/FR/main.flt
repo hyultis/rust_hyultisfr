@@ -140,7 +140,7 @@ pagePersoCV_desc = <h2 style="margin-left: -1em; margin-right: -1em;">Profil pro
   <li>Développement dans un environnement réglementé suivant les normes <b>ISO 62304</b>, <b>ISO 13485</b> et <b>ISO 14971</b></li>
  </ul>
  <h3>Créateur et développeur logiciel <span>chez <a class="externe" href="https://www.hyultis.fr/" rel="noopener noreferrer nofollow" target="_blank">Hyultis</a> depuis 01/2023</span></h3>
- <p>Depuis 2026: Conception d'un second jeu-vidéo en <b>Rust</b> avec développement sous <a class="externe" href="https://bevy.org/" rel="noopener noreferrer nofollow" target="_blank"><b>Bevy</b></a> en <b>Agentic Engineering</b>.</p>
+ <p>Depuis 2026 : conception d’un second jeu vidéo en <b>Rust</b> avec <a class="externe" href="https://bevy.org/" rel="noopener noreferrer nofollow" target="_blank"><b>Bevy</b></a>, selon une approche d’<b>Agentic Engineering</b>. L’implémentation est confiée à des agents IA ; je prends en charge l’architecture logicielle, la définition, l’organisation et le suivi des plans, ainsi que la revue et la validation du code produit.</p>
  <p>Conception d’un moteur de jeu multithreadé en <b>Rust</b> et développement complet du jeu vidéo <a class="externe" href="https://www.hyultis.fr/#heatchain" rel="noopener noreferrer nofollow" target="_blank"><b>Heatchain</b></a>.</p>
  <ul>
   <li>Architecture d’un moteur de jeu multiplateforme pour <b>Linux</b>, <b>Windows</b> et <b>Android</b>

@@ -2,19 +2,20 @@ use std::collections::HashMap;
 use leptos::{component, view, IntoView};
 use leptos::children::ChildrenFn;
 use leptos::html::InnerHtmlAttribute;
-use leptos::prelude::{expect_context, Get, IntoAny};
+use leptos::prelude::{expect_context, untrack, Get, IntoAny};
 use leptos::suspense::Transition;
 use leptos::prelude::ElementChild;
 use reactive_stores::Store;
 use crate::front::utils::fluent::FluentManager::FluentManager;
-use crate::front::utils::usersData::{UserData, UserDataStoreFields};
+use crate::front::utils::users_data::{UserData};
 
 #[component]
 pub fn TranslateCurrentLang() -> impl IntoView {
+	let userData = expect_context::<Store<UserData>>();
 
 	view! { <TranslateFn key=move || {
-		let tmp = expect_context::<Store<UserData>>().lang().get();
-		return format!("swap_to_{}",tmp);
+		let lang = userData.get().lang_get();
+		return format!("swap_to_{}",lang);
 	}/> }.into_any()
 }
 
@@ -59,7 +60,16 @@ pub fn TranslateFn(
 
 	let altkey = key.clone();
 	view! {
-		<Transition fallback=move || view! { <span>{format!("{}_fallback",altkey.clone()())}</span> }.into_any()>
+		<Transition fallback=move || {
+	        let fallback = untrack(|| {
+	            format!("{}_fallback", altkey())
+	        });
+
+	        view! {
+	            <span>{fallback}</span>
+	        }
+	        .into_any()
+        }>
 			{move || translate.get().map(|translated|{
 					if let Some((prefix,suffix)) = translated.split_once(splitted)
 					{

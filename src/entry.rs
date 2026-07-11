@@ -28,7 +28,7 @@ use crate::front::pages::hyultiscom::perso_webhome::PersoWebhome;
 use crate::front::pages::hyultiscom::perso_wowmystats::PersoWowMyStats;
 use crate::front::utils::dataHide::DataHideMail;
 use crate::front::utils::translate::{Translate, TranslateCurrentLang};
-use crate::front::utils::usersData::{UserData};
+use crate::front::utils::users_data::{UserData};
 
 pub fn shell((options,trace_front_log): (LeptosOptions, bool)) -> impl IntoView {
 	//	<meta http-equiv="Content-Security-Policy" content="default-src https: * 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' 'wasm-unsafe-eval'; script-src-elem *"/>
@@ -61,7 +61,14 @@ pub fn App(traceFrontLog: bool) -> impl IntoView {
 	if(use_context::<Store<UserData>>().is_none())
 	{
 		let locales = use_locales();
-		provide_context(Store::new(UserData::new(locales.get().first().unwrap_or(&"EN".to_string()))));
+		let locale = locales.with_untracked(|locales| {
+			locales
+				.first()
+				.cloned()
+				.unwrap_or_else(|| "EN".to_string())
+		});
+
+		provide_context(Store::new(UserData::new(&locale)));
 	}
 
 	let userData = expect_context::<Store<UserData>>();
