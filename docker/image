@@ -1,45 +1,90 @@
-# Get started with a build env with Rust nightly
-FROM rust:1.94-alpine AS builder
+# syntax=docker/dockerfile:1
+
+FROM rust:1.97-alpine AS tools
+
+ARG CARGO_CHEF_VERSION=0.1.77
+ARG CARGO_LEPTOS_VERSION=0.3.7
 
 ENV BUILDNAME=hyultisfr
+ENV LEPTOS_HASH_FILES=true
 
-RUN apk update && \
-    apk add --no-cache bash curl npm libc-dev binaryen perl make
+RUN apk add --no-cache \
+    bash \
+    binaryen \
+    curl \
+    libc-dev \
+    make \
+    npm \
+    perl
 
-RUN npm install -g sass
+RUN npm install --global sass
 
-# rust set up
-RUN rustup target add wasm32-unknown-unknown
-RUN cargo install cargo-leptos
+RUN rustup target add wasm32-unknown-unknown \
+    && cargo install \
+        --locked \
+        --version "${CARGO_CHEF_VERSION}" \
+        cargo-chef \
+    && cargo install \
+        --locked \
+        --version "${CARGO_LEPTOS_VERSION}" \
+        cargo-leptos
 
-# build set up
 WORKDIR /work
+
+
+# Analyse uniquement la structure Cargo et les dépendances
+FROM tools AS planner
+
 COPY . .
-RUN rm -R target; exit 0
+
+RUN cargo chef prepare --recipe-path recipe.json
+
+
+# Compile les dépendances, puis l'application
+FROM tools AS builder
+
+COPY --from=planner /work/recipe.json ./recipe.json
+
+# Dépendances du serveur SSR
+RUN cargo chef cook \
+    --release \
+    --no-default-features \
+    --features ssr \
+    --recipe-path recipe.json
+
+# Dépendances du frontend WASM
+RUN cargo chef cook \
+    --release \
+    --target wasm32-unknown-unknown \
+    --no-default-features \
+    --features hydrate \
+    --recipe-path recipe.json
+
+# Cette copie n'invalide désormais que la compilation de l'application
+COPY . .
+
 RUN cargo leptos build --release --precompress
 
-# post build stuff
-RUN mkdir /work/build
-RUN cp /work/target/release/$BUILDNAME /work/build/leptosapp
-RUN cp -R /work/target/site /work/build/site
-RUN rm -R /work/target
+RUN mkdir -p /work/build \
+    && cp "/work/target/release/${BUILDNAME}" /work/build/leptosapp \
+    && cp -R /work/target/site /work/build/site
+
 
 FROM rustlang/rust:nightly-alpine AS runner
 
 WORKDIR /app
 
-RUN mkdir dynamic
-RUN mkdir config
+RUN mkdir -p dynamic config
 
 COPY --from=builder /work/build /app
 COPY --from=builder /work/Cargo.toml /app/
 COPY --from=builder /work/static /app/static
 
-# clean cargo (reduce size)
-
-ENV ENV="PROD"
-ENV LEPTOS_SITE_ADDR="0.0.0.0:3001"
+ENV ENV=PROD
+ENV LEPTOS_SITE_ADDR=0.0.0.0:3001
 ENV LEPTOS_SITE_ROOT=./site
+ENV LEPTOS_HASH_FILES=true
+
 EXPOSE 3001
 
 CMD ["/app/leptosapp"]
