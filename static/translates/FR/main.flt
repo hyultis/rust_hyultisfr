@@ -122,96 +122,73 @@ pagePersoWowMyStats_desc = Mini-site de statistique sur des personnage de world 
  <br/>
  Mais entre l'évolution de l'armory de wow et mon désintérêt du jeu, ce système ne fonctionne plus.
  
-pagePersoCV_desc = <h2 style="margin-left: -1em;margin-right: -1em;">Expériences professionnelles :</h2>
- <h3>Développeur fullstack <span>Chez <a class="externe" href="https://www.thess-corp.fr/" rel="noopener noreferrer nofollow" target="_blank">Thess-corp</a> depuis 07/2024</span></h3>
+pagePersoCV_desc = <h2 style="margin-left: -1em; margin-right: -1em;">Profil professionnel</h2>
+ <p><b>Développeur full-stack senior avec plus de 15 ans d’expérience</b> dans la conception, la modernisation et l’exploitation d’applications métier.</p><br/>
+ <p>J’interviens principalement sur des environnements <b>Java / Spring Boot</b>, <b>TypeScript / React</b> et des infrastructures conteneurisées avec <b>Kubernetes</b> et <b>Helm</b>. Mon parcours couvre également l’intégration de données, les systèmes EDI à fort volume, les applications de santé et le développement bas niveau en <b>Rust</b>.</p><br/>
+ <p>Je suis particulièrement à l’aise sur les sujets qui demandent de comprendre un système existant, de reprendre du code historique, de fiabiliser son fonctionnement et de faire évoluer progressivement son architecture.</p>
+ <h2 style="margin-left: -1em; margin-right: -1em;">Expériences professionnelles</h2>
+ <h3>Développeur full-stack expert <span>chez <a class="externe" href="https://www.thess-corp.fr/" rel="noopener noreferrer nofollow" target="_blank">Thess Corporate</a> depuis 07/2024</span></h3>
+ <p>Développement, évolution et maintien d’une plateforme de suivi de santé connectée à des dispositifs physiques.</p>
  <ul>
- 	<li><b>Développement expert FULLSTACK, suivi et maintien d'un logiciel de suivi de santé patient avec appareil physique</b>
- 		<ul>
- 			<li>Back-end <b>JAVA</b> (8, 21) sur <b>Spring Boot</b> avec <b>Maven</b></li>
- 			<li>Front-end <b>TypeScript</b> sur <b>React</b></li>
- 			<li>Orchestration de conteneurs via <b>Kubernetes / Helm</b> (micro-services / base de données)</li>
- 			<li>Déploiement via <b>GitLab/CI</b></li>
- 			<li>Développement selon <b>SCRUM</b>, les certifications ISO <b>62304/13485</b> et ISO <b>14971</b></li>
- 			<li><b>JIRA</b> pour l'organisation des tâches</li>
- 			<li>Reprise et révision de code ancien (Java 8), réorganisation de données en BDD <b>PostgreSQL</b></li>
- 			<li>Utilisation de <b>Kafka</b> pour le transfert de données sensibles</li>
- 			<li>Lecture/écriture de fichiers <b>HPRIM</b> et <b>HL7</b> pour les données de santé patient</li>
- 			<li>Révision de la configuration de <b>Keycloak</b> utilisé pour la gestion des utilisateurs</li>
- 		</ul>
- 	</li>
+  <li>Développement back-end en <b>Java 8 et Java 21</b> avec <b>Spring Boot</b> et <b>Maven</b></li>
+  <li>Développement front-end en <b>TypeScript</b> avec <b>React</b></li>
+  <li>Évolution d’une architecture de microservices déployée avec <b>Kubernetes</b> et <b>Helm</b></li>
+  <li>Automatisation des déploiements avec <b>GitLab CI/CD</b></li>
+  <li>Utilisation de <b>PostgreSQL</b>, <b>Apache Kafka</b> et <b>Keycloak</b></li>
+  <li>Reprise et modernisation de code historique, refactoring et évolution des modèles de données</li>
+  <li>Intégration de données de santé aux formats <b>HL7</b> et <b>HPRIM</b></li>
+  <li>Développement dans un environnement réglementé suivant les normes <b>ISO 62304</b>, <b>ISO 13485</b> et <b>ISO 14971</b></li>
  </ul>
- <h3>Développeur expert <span>Chez <a class="externe" href="https://www.hyultis.fr/" rel="noopener noreferrer nofollow" target="_blank">Hyultis</a> depuis 01/2023</span></h3>
+ <h3>Créateur et développeur logiciel <span>chez <a class="externe" href="https://www.hyultis.fr/" rel="noopener noreferrer nofollow" target="_blank">Hyultis</a> depuis 01/2023</span></h3>
+ <p>Depuis 2026: Conception d'un second jeu-vidéo en <b>Rust</b> avec développement sous <a class="externe" href="https://bevy.org/" rel="noopener noreferrer nofollow" target="_blank"><b>Bevy</b></a> en <b>Agentic Engineering</b>.</p>
+ <p>Conception d’un moteur de jeu multithreadé en <b>Rust</b> et développement complet du jeu vidéo <a class="externe" href="https://www.hyultis.fr/#heatchain" rel="noopener noreferrer nofollow" target="_blank"><b>Heatchain</b></a>.</p>
  <ul>
- 	<li><b>Développement du jeu vidéo <a class="externe" href="https://www.hyultis.fr/#heatchain" rel="noopener noreferrer nofollow" target="_blank">Heatchain</a></b>
- 	<ul>
- 		<li>Apprentissage du langage <a class="externe" href="https://www.rust-lang.org/" rel="noopener noreferrer nofollow" target="_blank">Rust</a></li>
- 		<li>Développement d'un moteur de jeu vidéo complet multi-threadé</li>
- 		<ul>
- 			<li>Système de rendu graphique (API Vulkan) avec plusieurs passes de rendu et résolution dynamique adaptative</li>
- 			<li>Systèmes de rendu 2D et 3D avec shaders GLSL</li>
- 			<li>Système de textures et de polices (texte)</li>
- 			<li>Système d’animation</li>
- 			<li>Système d’événements</li>
- 			<li>Système audio (basé sur Rodio)</li>
- 			<li>Plateformes de compilation : Windows, Linux, Android</li>
- 			<li>Chiffrement AES pour les scores</li>
- 			<li>Steam uniquement : intégration Steamworks</li>
- 			<li>Android uniquement : intégration AdMob et services Google</li>
- 		</ul>
- 		<li>L'entièreté du jeu vidéo Heatchain (logique, gameplay, graphismes, DA, événements, etc.) — en dehors de certains assets graphiques et audio</li>
- 		<li>Compilation, packaging et mise à disposition sur les plateformes : Steam, Itch.io, Play Store</li>
- 		<li>Marketing</li>
- 	</ul>
+  <li>Architecture d’un moteur de jeu multiplateforme pour <b>Linux</b>, <b>Windows</b> et <b>Android</b>
+   <ul>
+    <li>Moteur de rendu 2D et 3D avec <b>Vulkan</b> et shaders <b>GLSL</b></li>
+    <li>Plusieurs passes de rendu et résolution dynamique adaptative</li>
+    <li>Gestion des textures, polices, animations, événements et de l’audio</li>
+    <li>Architecture multithreadée et gestion des ressources</li>
+   </ul>
+  </li>
+  <li>Développement du gameplay, des outils, de l’interface et de la direction artistique</li>
+  <li>Intégration de <b>Steamworks</b>, des services Google et d’AdMob selon les plateformes</li>
+  <li>Chiffrement AES des scores</li>
+  <li>Packaging et publication sur <b>Steam</b>, <b>itch.io</b> et le <b>Play Store</b></li>
  </ul>
-
- <h3>Développeur senior FULLSTACK / Chez <a class="externe" href="https://www.adec-sas.com/" rel="noopener noreferrer nofollow" target="_blank">SAS-ADEC</a> du 06/2012 au 08/2022</span></h3>
+ <h3>Développeur full-stack senior <span>chez <a class="externe" href="https://www.adec-sas.com/" rel="noopener noreferrer nofollow" target="_blank">ADEC SAS</a> de 06/2012 à 08/2022</span></h3>
+ <p>Développement et exploitation de solutions EDI et d’applications métier à fort volume.</p>
  <ul>
- 	<li><b>Développement FULLSTACK dans le service EDI</b><ul>
- 		<li>Développement sur le logiciel <a class="externe" href="https://www.axway.com/" rel="noopener noreferrer nofollow" target="_blank">AXWAY</a> : B2Bi, mapping services, DML, BMC, JAVA</li>
- 		<li>Ensemble de scripts de traitement en PHP spécifiques à chaque partenaire (~70 scripts différents)</li>
- 		<li>Environnement de traces/debug des scripts développé sur mesure</li>
- 		<li>Système de recherche par métadonnées et de suivi complet des fichiers reçus/transmis et de toutes leurs étapes d’évolution via une API et une interface web (+15 000 flux et +250 000 appels API par jour)</li>
- 		<li>Système d’extraction de fichiers en erreur et de traductions automatiques pour envoi direct aux clients</li>
- 	</ul></li>
- 	<li><b>Reprise de projets existants</b> en PHP (jusqu'à PHP 5.1), stabilisation, évolution, révision complète et/ou progressive selon les besoins</li>
- 	<li><b>Gestion de services internes</b> à l'entreprise : GitLab / Confluence / Matrix</li>
- 	<li>Avant 2016 : Conseils techniques et développement PHP dans une équipe de 2 personnes sur le même projet TIE</li>
+  <li>Développement sur <b>AXWAY B2Bi</b>, Interchange et Mapping Services</li>
+  <li>Création de plugins <b>Java</b> et de traitements <b>PHP</b> adaptés aux partenaires</li>
+  <li>Maintenance d’environ <b>70 chaînes de traitement spécifiques</b></li>
+  <li>Conception d’un environnement de traces et de diagnostic pour les flux</li>
+  <li>Développement d’une plateforme de recherche et de traçabilité traitant plus de <b>15 000 flux</b> et <b>250 000 appels API par jour</b></li>
+  <li>Automatisation de l’extraction et de la traduction des fichiers en erreur</li>
+  <li>Reprise, stabilisation et modernisation progressive d’applications PHP historiques</li>
+  <li>Administration de services internes : <b>GitLab</b>, <b>Confluence</b> et <b>Matrix</b></li>
  </ul>
-
- <h3>Développeur informatique <span style="font-style: italic">Chez <a class="externe" href="https://tiekinetix.com/fr" rel="noopener noreferrer nofollow" target="_blank">TIE KINETIX</a> du 11/2010 au 06/2012</span></h3>
+ <h3>Développeur <span>chez <a class="externe" href="https://tiekinetix.com/fr" rel="noopener noreferrer nofollow" target="_blank">TIE Kinetix</a> de 11/2010 à 06/2012</span></h3>
  <ul>
- 	<li>Responsable d'un projet client ADEC conséquent (100 études d'huissiers abonnées à l'application, jusqu'à 4 développeurs)</li>
- 	<li>Analyses et estimations des délais de développement des projets confiés à l'équipe</li>
- 	<li>Conseils techniques auprès du client ADEC</li>
+  <li>Responsabilité technique d’un projet utilisé par environ <b>100 études d’huissiers</b></li>
+  <li>Coordination d’une équipe pouvant atteindre <b>quatre développeurs</b></li>
+  <li>Analyse des besoins, estimation des développements et conseil technique auprès du client</li>
  </ul>
-
- <h3>Compétences et qualifications :</h3>
-
+ <h2 style="margin-left: -1em; margin-right: -1em;">Compétences</h2>
+ <h3>Développement</h3>
+ <p><b>Java 8/21</b>, Spring Boot, Maven, TypeScript, React, JavaScript, <b>Rust</b>, <b>PHP</b>, HTML, CSS.</p>
+ <h3>Architecture et systèmes</h3>
+ <p>Architecture logicielle, API REST, microservices, multithreading, refactoring, modernisation de code historique, conception orientée objet.</p>
+ <h3>Données et intégration</h3>
+ <p><b>PostgreSQL</b>, MariaDB, MySQL, <b>Apache Kafka</b>, EDI, AXWAY B2Bi, HL7, HPRIM.</p>
+ <h3>Infrastructure</h3>
+ <p>Kubernetes, Helm, Docker, GitLab CI/CD, Linux, Keycloak, Bash.</p>
+ <h3>Développement graphique</h3>
+ <p>Vulkan, GLSL, rendu 2D/3D, gestion des ressources, résolution dynamique.</p>
+ <h2 style="margin-left: -1em; margin-right: -1em;">Formation</h2>
  <ul>
-    <li><b>Langages avec expertise :</b> Rust, JAVA, PHP</li>
-    <li><b>Langages maîtrisés :</b> Web (JavaScript, HTML, CSS), SQL (MySQL, MariaDB, PostgreSQL)</li>
-    <li><b>Langages connus :</b> Dlang, C++</li>
-    <li><b>Paradigmes de langages :</b> POO, standards, design patterns, chiffrements, REST, <i>etc.</i></li>
-    <li><b>Paradigmes personnels :</b> Apprentissage continu, autonomie complète, adaptabilité, initiative d'amélioration</li>
-    <li><b>DevOps :</b> Docker, Helm, Caddy, Minikube, GitHub, GitLab, Linux, Bash/Sh</li>
- 	<li><b>IDE :</b> IntelliJ IDEA, NetBeans</li>
- 	<li><b>Administration de serveurs Linux :</b> Ubuntu/Debian, iptables, SSH, Apache, MySQL, PostgreSQL, GitLab, Confluence, Matrix/Element, déploiement automatisé, <i>etc.</i></li>
+  <li><b>BTS Informatique de gestion</b>, obtenu en 2010 au lycée de la Chambre de commerce et d’industrie de Nîmes</li>
+  <li><b>Baccalauréat STG</b>, obtenu en 2008 au lycée Ernest Hemingway de Nîmes</li>
  </ul>
-
- <h3> Diplômes :</h3>
- <ul>
- 	<li>B.T.S Informatique de Gestion obtenu en juin 2010 au lycée de la C.C.I (Chambre de Commerce) de Nîmes</li>
- 	<li>B.A.C (S.T.G.) obtenu en juin 2008 au Lycée Ernest Hemingway Nîmes</li>
- </ul>
-
- <h3> Stages (durant ma scolarité) :</h3>
-
- <ul>
- 	<li>GROUPE RDI (8 semaines 2010) SSII, stage dans la section développement Microsoft</li>
- 	<li>HABITAT du GARD (6 semaines 2009) Société de logements sociaux (service informatique)</li>
- </ul>
-
- <h3> Loisirs :</h3>
- Programmation, jeux, lecture, actualités/technologies en général, musique.
 
 mentionslegal_title = Mentions légales

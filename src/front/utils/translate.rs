@@ -23,16 +23,18 @@ pub fn Translate(#[prop(into)] key: String,
                  #[prop(optional)]
                  params: HashMap<String,String>,
                  #[prop(optional)]
-                 children: Option<ChildrenFn>) -> impl IntoView {
+                 children: Option<ChildrenFn>,
+                 #[prop(optional)]
+                 isBloc: bool) -> impl IntoView {
 
 	if let Some(children) = children {
 		return view!{
-			<TranslateFn key=move || key.clone() params=params children=children/>
+			<TranslateFn key=move || key.clone() params=params children=children isBloc=isBloc/>
 		}.into_any()
 	}
 
 	return view!{
-		<TranslateFn key=move || key.clone() params=params/>
+		<TranslateFn key=move || key.clone() params=params isBloc=isBloc/>
 	}.into_any();
 }
 
@@ -42,7 +44,9 @@ pub fn TranslateFn(
     #[prop(optional)]
 	mut params: HashMap<String,String>,
 	#[prop(optional)]
-	children: Option<ChildrenFn>) -> impl IntoView {
+	children: Option<ChildrenFn>,
+	#[prop(optional)]
+	isBloc: bool) -> impl IntoView {
 
 	let splitted= "{--$chidren--}";
 
@@ -63,17 +67,26 @@ pub fn TranslateFn(
 						let suffix = suffix.to_string();
 						if let Some(children) = &children
 						{
-							view! { <span inner_html={prefix}/>{children()}<span inner_html={suffix}/> }.into_any()
+							if(isBloc)
+								{view! { <div inner_html={prefix}/>{children()}<div inner_html={suffix}/> }.into_any()}
+							else
+								{view! { <span inner_html={prefix}/>{children()}<span inner_html={suffix}/> }.into_any()}
 						}
 						else
 						{
-							view! { <span inner_html={prefix}/><span inner_html={suffix}/> }.into_any()
+							if(isBloc)
+								{view! { <div inner_html={prefix}/><div inner_html={suffix}/> }.into_any()}
+							else
+								{view! { <span inner_html={prefix}/><span inner_html={suffix}/> }.into_any()}
 						}
 					}
 					else
 					{
 						// first "" is important to fix the hydration bug from fallback
-						view! { <span inner_html={translated}/> }.into_any()
+						if(isBloc)
+							{view! { <div inner_html={translated}/> }.into_any()}
+						else
+							{view! { <span inner_html={translated}/> }.into_any()}
 					}
 				})
 			}

@@ -21,7 +21,7 @@ pub fn PersoCV() -> impl IntoView {
 				"Age : " {move || now.year() - 1989}" " ans<br/>
 				"Courriel : " <ObfuscateEmail email /><br/>
 
-				<Translate key="pagePersoCV_desc"/>
+				<Translate key="pagePersoCV_desc" isBloc=true/>
 			</div>
 		</article>
     }
