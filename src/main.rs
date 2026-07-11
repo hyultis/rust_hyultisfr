@@ -152,7 +152,7 @@ mod helper {
 		let mut response = next.run(request).await;
 
 		response.headers_mut().insert(X_FRAME_OPTIONS, HeaderValue::from_static("DENY"));
-		response.headers_mut().insert(CONTENT_SECURITY_POLICY, HeaderValue::from_static("frame-ancestors 'none'"));
+		//response.headers_mut().insert(CONTENT_SECURITY_POLICY, HeaderValue::from_static("frame-ancestors 'none'")); // removed in favor of nonce
 		response.headers_mut().insert(X_CONTENT_TYPE_OPTIONS, HeaderValue::from_static("nosniff"));
 		response.headers_mut().insert(STRICT_TRANSPORT_SECURITY, HeaderValue::from_static("max-age=63072000; includeSubDomains; preload"));
 		response.headers_mut().insert(REFERRER_POLICY, HeaderValue::from_static("no-referrer"));

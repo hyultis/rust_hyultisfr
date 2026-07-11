@@ -7,7 +7,7 @@ use leptos::component;
 use leptos::view;
 use leptos::IntoView;
 use leptos::prelude::*;
-use leptos_meta::{provide_meta_context, Meta, MetaTags, Stylesheet, Title};
+use leptos_meta::{provide_meta_context, HashedStylesheet, Meta, MetaTags, Title};
 use leptos_router::components::{Route, Router, Routes, A};
 use leptos_router::path;
 use leptos_use::use_locales;
@@ -31,7 +31,9 @@ use crate::front::utils::translate::{Translate, TranslateCurrentLang};
 use crate::front::utils::users_data::{UserData};
 
 pub fn shell((options,trace_front_log): (LeptosOptions, bool)) -> impl IntoView {
-	//	<meta http-equiv="Content-Security-Policy" content="default-src https: * 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' 'wasm-unsafe-eval'; script-src-elem *"/>
+	#[cfg(feature = "ssr")]
+	add_content_security_policy();
+
 	view! {
 		<!DOCTYPE html>
 		<html lang="en">
@@ -43,6 +45,9 @@ pub fn shell((options,trace_front_log): (LeptosOptions, bool)) -> impl IntoView 
 				<meta lang="en" name="description" content="Hyultis's website"/>
 				//<meta http-equiv="Content-Security-Policy" content="script-src https: 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'"/> // actuellement instable avec leptos ?
 				<AutoReload options=options.clone() />
+
+				<HashedStylesheet options=options.clone()/>
+
 				<HydrationScripts options islands=true/>
 				<MetaTags/>
 			</head>
@@ -51,6 +56,45 @@ pub fn shell((options,trace_front_log): (LeptosOptions, bool)) -> impl IntoView 
 			</body>
 		</html>
 	}
+}
+#[cfg(feature = "ssr")]
+fn add_content_security_policy() {
+	use axum::http::{
+		header::CONTENT_SECURITY_POLICY,
+		HeaderValue,
+	};
+	use leptos::{
+		nonce::use_nonce,
+		prelude::use_context,
+	};
+	use leptos_axum::ResponseOptions;
+
+	let Some(nonce) = use_nonce() else {
+		return;
+	};
+
+	let Some(response_options) = use_context::<ResponseOptions>() else {
+		return;
+	};
+
+	let policy = format!(
+		"default-src 'self'; \
+         script-src 'self' 'nonce-{nonce}' 'wasm-unsafe-eval'; \
+         style-src 'self' 'nonce-{nonce}'; \
+         object-src 'none'; \
+         base-uri 'self'; \
+         frame-ancestors 'none'; \
+         form-action 'self'; \
+         img-src 'self' data:; \
+         font-src 'self'; \
+         connect-src 'self';"
+	);
+
+	response_options.insert_header(
+		CONTENT_SECURITY_POLICY,
+		HeaderValue::from_str(&policy)
+			.expect("Invalid Content-Security-Policy header"),
+	);
 }
 
 #[island]
@@ -87,9 +131,6 @@ pub fn App(traceFrontLog: bool) -> impl IntoView {
 	});
 
 	view! {
-		// injects a stylesheet into the document <head>
-		// id=leptos means cargo-leptos will hot-reload this stylesheet
-		<Stylesheet id="leptos" href="/pkg/hyultisfr.css"/>
 
 		// sets the document title
 		<Title text="Hyultis"/>

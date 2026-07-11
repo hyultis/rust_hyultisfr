@@ -45,6 +45,7 @@ ssr = [
     "dep:leptos_axum",
     "leptos/ssr",
     "leptos_meta/ssr",
+	"leptos_meta/nonce",
     "leptos_router/ssr",
     "leptos-use/ssr",
     "leptos-use/axum",
