@@ -67,7 +67,7 @@ RUN cargo leptos build --release --precompress
 
 RUN mkdir -p /work/build \
     && cp "/work/target/release/${BUILDNAME}" /work/build/leptosapp \
-    && /work/target/release/hash.txt /work/build/hash.txt \
+    && cp /work/target/release/hash.txt /work/build/hash.txt \
     && cp -R /work/target/site /work/build/site
 
 FROM rustlang/rust:nightly-alpine AS runner
